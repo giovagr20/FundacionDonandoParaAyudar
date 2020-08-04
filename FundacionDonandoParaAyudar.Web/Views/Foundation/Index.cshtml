@@ -1,0 +1,79 @@
+﻿@model IEnumerable<FundacionDonandoParaAyudar.Web.Data.Entities.FoundationEntity>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Nuestra fundación</h2>
+<hr />
+
+@if (User.Identity.IsAuthenticated) { 
+<p>
+    <a asp-action="Create">Crear comentario</a>
+</p>
+}
+<br />
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model=>model.User.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comments)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalles</a>
+                    <button data-id="@item.Id" class="btn btn-danger deleteItem"
+                            data-toggle="modal"
+                            data-target="#deleteDialog">
+                        Borrar
+                    </button>
+                </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+
+<partial name="_DeleteDialog" />
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#MyTable').DataTable();
+
+            // Delete item
+            var item_to_delete;
+
+            $('.deleteItem').click((e) => {
+                item_to_delete = e.currentTarget.dataset.id;
+            });
+
+            $("#btnYesDelete").click(function () {
+                window.location.href = '/Foundation/Delete/' + item_to_delete;
+            });
+        });
+    </script>
+}
+

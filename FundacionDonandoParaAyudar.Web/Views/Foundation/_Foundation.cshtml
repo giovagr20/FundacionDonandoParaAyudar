@@ -1,0 +1,10 @@
+﻿@model FundacionDonandoParaAyudar.Web.Data.Entities.FoundationEntity
+
+<div>
+    <label class="control-label">@User.Identity.Name</label>
+</div>
+<div class="form-group">
+    <label asp-for="Comments" class="control-label">Comentario</label>
+    <input asp-for="Comments" class="form-control" placeholder="Añade tu comentario"/>
+    <span asp-validation-for="Comments" class="text-danger"></span>
+</div>
