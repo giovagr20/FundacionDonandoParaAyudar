@@ -18,6 +18,15 @@ namespace FundacionDonandoParaAyudar.Web.Helpers
         Task<SignInResult> LoginAsync(LoginViewModel model);
         Task LogoutAsync();
         Task<UserEntity> AddUserAsync(AddUserViewModel model, string path);
+        Task<IdentityResult> ChangePasswordAsync(UserEntity user, string oldPassword, string newPassword);
+        Task<IdentityResult> UpdateUserAsync(UserEntity user);
+        Task<SignInResult> ValidatePasswordAsync(UserEntity user, string password);
+        Task<string> GenerateEmailConfirmationTokenAsync(UserEntity user);
+        Task<IdentityResult> ConfirmEmailAsync(UserEntity user, string token);
+
+        Task<UserEntity> GetUserAsync(string email);
+
+        Task<UserEntity> GetUserAsync(Guid userId);
 
     }
 }

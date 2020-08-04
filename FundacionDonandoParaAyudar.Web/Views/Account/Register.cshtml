@@ -21,7 +21,7 @@
 
             <partial name="_User" />
 
-            <div class="form-group">
+            <div class="form-group hidden">
                 <label asp-for="UserTypeId" class="control-label">Rol</label>
                 <select asp-for="UserTypeId" asp-items="Model.UserTypes" class="form-control"></select>
                 <span asp-validation-for="UserTypeId" class="text-danger"></span>
@@ -45,6 +45,13 @@
         </form>
     </div>
 </div>
+
+<div class="text-success">
+    <p>
+        @ViewBag.Message
+    </p>
+</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
