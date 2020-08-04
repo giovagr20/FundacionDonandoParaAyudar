@@ -4,14 +4,22 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Nuestra fundación</h2>
+<hr />
 
+@if (User.Identity.IsAuthenticated) { 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear comentario</a>
 </p>
+}
+<br />
+<br />
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model=>model.User.FullName)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Comments)
             </th>
@@ -21,19 +29,26 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            @if (User.Identity.IsAuthenticated)
+            {
                 <td>
-                    @Html.DisplayFor(modelItem => item.User.UserName)
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalles</a>
+                    <button data-id="@item.Id" class="btn btn-danger deleteItem"
+                            data-toggle="modal"
+                            data-target="#deleteDialog">
+                        Borrar
+                    </button>
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Comments)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
+            }
+        </tr>
         }
     </tbody>
 </table>

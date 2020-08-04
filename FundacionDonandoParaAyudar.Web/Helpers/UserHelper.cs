@@ -1,4 +1,6 @@
-﻿using FundacionDonandoParaAyudar.Web.Data.Entities;
+﻿using FundacionDonandoParaAyudar.Common.Enums;
+using FundacionDonandoParaAyudar.Web.Data.Entities;
+using FundacionDonandoParaAyudar.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -9,21 +11,48 @@ namespace FundacionDonandoParaAyudar.Web.Helpers
 {
     public class UserHelper : IUserHelper
     {
-
         private readonly UserManager<UserEntity> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<UserEntity> _signInManager;
 
         public UserHelper(
             UserManager<UserEntity> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            SignInManager<UserEntity> signInManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _signInManager = signInManager;
         }
 
         public async Task<IdentityResult> AddUserAsync(UserEntity user, string password)
         {
             return await _userManager.CreateAsync(user, password);
+        }
+
+        public async Task<UserEntity> AddUserAsync(AddUserViewModel model, string path)
+        {
+            UserEntity userEntity = new UserEntity
+            {
+                Address = model.Address,
+                Document = model.Document,
+                Email = model.Username,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                PicturePath = path,
+                PhoneNumber = model.PhoneNumber,
+                UserName = model.Username,
+                UserType = model.UserTypeId == 1 ? UserType.Admin : UserType.User
+            };
+
+            IdentityResult result = await _userManager.CreateAsync(userEntity, model.Password);
+            if (result != IdentityResult.Success)
+            {
+                return null;
+            }
+            UserEntity newUser = await GetUserByEmailAsync(model.Username);
+            await AddUserToRoleAsync(newUser, userEntity.UserType.ToString());
+            return newUser;
         }
 
         public async Task AddUserToRoleAsync(UserEntity user, string roleName)
@@ -43,11 +72,6 @@ namespace FundacionDonandoParaAyudar.Web.Helpers
             }
         }
 
-        public Task CheckRoleAsync(object p)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<UserEntity> GetUserByEmailAsync(string email)
         {
             return await _userManager.FindByEmailAsync(email);
@@ -57,5 +81,20 @@ namespace FundacionDonandoParaAyudar.Web.Helpers
         {
             return await _userManager.IsInRoleAsync(user, roleName);
         }
+
+        public async Task<SignInResult> LoginAsync(LoginViewModel model)
+        {
+            return await _signInManager.PasswordSignInAsync(
+                model.Username,
+                model.Password,
+                model.RememberMe,
+                false);
+        }
+
+        public async Task LogoutAsync()
+        {
+            await _signInManager.SignOutAsync();
+        }
+
     }
 }

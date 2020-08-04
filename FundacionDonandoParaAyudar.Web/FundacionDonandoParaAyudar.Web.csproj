@@ -14,4 +14,8 @@
     <ProjectReference Include="..\FundacionDonandoParaAyudar.Common\FundacionDonandoParaAyudar.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Users\" />
+  </ItemGroup>
+
 </Project>

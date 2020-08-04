@@ -17,7 +17,7 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">FundacionDonandoParaAyudar.Web</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Fundacion Donando Para Ayudar</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -34,8 +34,19 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="About">Quienes somos</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contactanos</a></li>
                     <li><a asp-area="" asp-controller="Foundation" asp-action="Index">Nuestra fundacion</a></li>
-
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="ChangeUser">@User.Identity.Name</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Logout">Salir</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Ingresar</a></li>
+                    }
+                </ul>
+
             </div>
         </div>
     </nav>
@@ -46,7 +57,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2020 - FundacionDonandoParaAyudar.Web</p>
+            <p>&copy;<b> Fundacion Donando Para Ayudar</b></p>
         </footer>
     </div>
 

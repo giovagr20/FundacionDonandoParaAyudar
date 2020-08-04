@@ -7,14 +7,14 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Entérate de nuestra fndación</h4>
+    <h4>Entérate de nuestra fundación</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.User.UserName)
+            Usuario
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.User.UserName)
+            @User.Identity.Name
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Comments)
@@ -25,6 +25,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Regresar</a>
 </div>
