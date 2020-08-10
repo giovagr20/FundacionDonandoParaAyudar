@@ -3,17 +3,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FundacionDonandoParaAyudar.Web</title>
+    <title>Donando Para Ayudar</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="shortcut icon" type="image/jpg" href="~/images/Logo.jpg" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="shortcut icon" type="image/jpg" href="~/images/Logo.jpg" />
     </environment>
 </head>
 <body>
@@ -26,7 +28,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Fundacion Donando Para Ayudar</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                    <img src="~/images/Logo.jpg" alt="Logo_FDPA" class="img-circle"
+                          style="width:35px;height:35px;max-width: 100%; height: auto; margin-top: -5px; " />
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
