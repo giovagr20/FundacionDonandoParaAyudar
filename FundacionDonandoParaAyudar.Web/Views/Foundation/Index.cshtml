@@ -7,18 +7,20 @@
 <h2>Nuestra fundación</h2>
 <hr />
 
-@if (User.Identity.IsAuthenticated) { 
 <p>
-    <a asp-action="Create">Crear comentario</a>
+    <a asp-action="Create" class="btn btn-primary">Crear comentario</a>
 </p>
-}
+
 <br />
 <br />
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model=>model.User.FullName)
+                Avatar
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.FullName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Comments)
@@ -30,6 +32,10 @@
         @foreach (var item in Model)
         {
         <tr>
+            <td>
+                <img src="@Url.Content(item.User.PicturePath)"
+                     alt="Image" style="width:50px;height:50px;max-width: 100%; height: auto;" />
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.User.FullName)
             </td>

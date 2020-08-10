@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\Users\**" />
+    <Content Remove="wwwroot\Users\**" />
+    <EmbeddedResource Remove="wwwroot\Users\**" />
+    <None Remove="wwwroot\Users\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MailKit" Version="2.8.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
@@ -16,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Users\" />
+    <Folder Include="wwwroot\images\Users\" />
   </ItemGroup>
 
 </Project>

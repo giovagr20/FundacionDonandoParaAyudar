@@ -117,12 +117,12 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
                 var response = _mailHelper.SendMail(model.Username, 
                     "Confirmación de correo electrónico", $"<h1>Correo de confirmación</h1>" +
                     $"Para permitir al usuario, " +
-                    $"Por favor presione click en este enlace" +
-                    $"link:</br></br><a href = \"{tokenLink}\">Confirm Email</a>");
+                    $"Por favor presione click en este enlace:" +
+                    $"</br></br><a href = \"{tokenLink}\">Confirmar Email</a>");
 
                 if (response.IsSuccess)
                 {
-                    ViewBag.Message = "Las instrucciones han sido enviadas a tu correo electrónico.";
+                    ViewBag.Message = "Se han enviado las instrucciones al correo.";
                     return View(model);
                 }
 
@@ -292,6 +292,64 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             return View();
         }
 
+        public IActionResult RecoverPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RecoverPassword(RecoverPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                UserEntity user = await _userHelper.GetUserAsync(model.Email);
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "El correo no corresponde al registrado.");
+                    return View(model);
+                }
+
+                string myToken = await _userHelper.GeneratePasswordResetTokenAsync(user);
+                string link = Url.Action(
+                    "ResetPassword",
+                    "Account",
+                    new { token = myToken }, protocol: HttpContext.Request.Scheme);
+                _mailHelper.SendMail(model.Email, "Clave cambiada", $"<h1>Cambiar clave</h1>" +
+                    $"Para cambiar la contrasela presiona click en este enlace:</br></br>" +
+                    $"<a href = \"{link}\">Cambiar clave</a>");
+                ViewBag.Message = "Las instrucciones para recuperar tu clave ha sido enviado al correo.";
+                return View();
+
+            }
+
+            return View(model);
+        }
+
+        public IActionResult ResetPassword(string token)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            UserEntity user = await _userHelper.GetUserAsync(model.UserName);
+            if (user != null)
+            {
+                Microsoft.AspNetCore.Identity.IdentityResult result = await _userHelper.ResetPasswordAsync(user, model.Token, model.Password);
+                if (result.Succeeded)
+                {
+                    ViewBag.Message = "Clave cambiada correctamente.";
+                    return View();
+                }
+
+                ViewBag.Message = "Error mientras se estaba cambiando clave.";
+                return View(model);
+            }
+
+            ViewBag.Message = "Usuario no encontrado.";
+            return View(model);
+        }
 
     }
 }

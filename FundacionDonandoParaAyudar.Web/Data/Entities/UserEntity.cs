@@ -8,22 +8,22 @@ namespace FundacionDonandoParaAyudar.Web.Data.Entities
     public class UserEntity : IdentityUser
     {
         [Display(Name = "Documento")]
-        [MaxLength(20, ErrorMessage = "The {0} field can not have more than {1} characters.")]
-        [Required(ErrorMessage = "The field {0} is mandatory.")]
+        [MaxLength(20, ErrorMessage = "El {0} campo no puede tener más de {1} caracteres.")]
+        [Required(ErrorMessage = "El campo {0} es mandatorio.")]
         public string Document { get; set; }
 
         [Display(Name = "Nombre")]
-        [MaxLength(50, ErrorMessage = "The {0} field can not have more than {1} characters.")]
-        [Required(ErrorMessage = "The field {0} is mandatory.")]
+        [MaxLength(50, ErrorMessage = "El {0} campo no puede tener más de {1} caracteres.")]
+        [Required(ErrorMessage = "El campo {0} es mandatorio.")]
         public string FirstName { get; set; }
 
         [Display(Name = "Apellido")]
-        [MaxLength(50, ErrorMessage = "The {0} field can not have more than {1} characters.")]
-        [Required(ErrorMessage = "The field {0} is mandatory.")]
+        [MaxLength(50, ErrorMessage = "El {0} campo no puede tener más de {1} caracteres.")]
+        [Required(ErrorMessage = "El campo {0} es mandatorio.")]
         public string LastName { get; set; }
 
         [Display(Name = "Dirección")]
-        [MaxLength(100, ErrorMessage = "The {0} field can not have more than {1} characters.")]
+        [MaxLength(100, ErrorMessage = "El {0} campo no puede tener más de {1} caracteres.")]
         public string Address { get; set; }
 
         [Display(Name = "Foto")]
