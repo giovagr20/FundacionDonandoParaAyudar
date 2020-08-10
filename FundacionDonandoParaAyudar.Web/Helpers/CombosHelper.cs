@@ -13,7 +13,7 @@ namespace FundacionDonandoParaAyudar.Web.Helpers
             List<SelectListItem> listItems = new List<SelectListItem>
             {
                 new SelectListItem { Value = "0", Text = "[Selecciona..]" },
-                new SelectListItem { Value = "1", Text = "User" }
+                new SelectListItem { Value = "1", Text = "User"}
             };
 
             return listItems;

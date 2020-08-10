@@ -122,7 +122,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
 
                 if (response.IsSuccess)
                 {
-                    ViewBag.Message = "Las instrucciones han sido enviadas a tu correo electrónico.";
+                    ViewBag.Message = "Se han enviado las instrucciones al correo.";
                     return View(model);
                 }
 

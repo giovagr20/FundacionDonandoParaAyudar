@@ -27,20 +27,9 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
         // GET: Foundation
         public async Task<IActionResult> Index()
         {
-            if (!User.Identity.IsAuthenticated)
-            {
-                return View(await _context.Comments
+            return View(await _context.Comments
                     .Include(c => c.User)
                     .ToListAsync());
-            }
-
-            UserEntity user = await _userHelper.GetUserByEmailAsync(User.Identity.Name);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return View(await _context.Comments
-                .Where(c => c.User.Id == user.Id).ToListAsync());
         }
 
         // GET: Foundation/Details/5
@@ -64,6 +53,10 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
         // GET: Foundation/Create
         public IActionResult Create()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 
