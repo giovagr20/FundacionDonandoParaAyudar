@@ -7,22 +7,40 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FundacionDonandoParaAyudar.Web.Data;
 using FundacionDonandoParaAyudar.Web.Data.Entities;
+using FundacionDonandoParaAyudar.Web.Helpers;
 
 namespace FundacionDonandoParaAyudar.Web.Controllers
 {
     public class FoundationController : Controller
     {
         private readonly DataContext _context;
+        private readonly IUserHelper _userHelper;
 
-        public FoundationController(DataContext context)
+        public FoundationController(
+            DataContext context,
+            IUserHelper userHelper)
         {
             _context = context;
+            _userHelper = userHelper;
         }
 
         // GET: Foundation
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Comments.OrderBy(c => c.Comments).ToListAsync());
+            if (!User.Identity.IsAuthenticated)
+            {
+                return View(await _context.Comments
+                    .Include(c => c.User)
+                    .ToListAsync());
+            }
+
+            UserEntity user = await _userHelper.GetUserByEmailAsync(User.Identity.Name);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(await _context.Comments
+                .Where(c => c.User.Id == user.Id).ToListAsync());
         }
 
         // GET: Foundation/Details/5
@@ -55,6 +73,10 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                UserEntity user = await _userHelper.GetUserAsync(User.Identity.Name);
+
+                model.User = user;
+
                 _context.Add(model);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

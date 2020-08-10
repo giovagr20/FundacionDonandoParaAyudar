@@ -117,8 +117,8 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
                 var response = _mailHelper.SendMail(model.Username, 
                     "Confirmación de correo electrónico", $"<h1>Correo de confirmación</h1>" +
                     $"Para permitir al usuario, " +
-                    $"Por favor presione click en este enlace" +
-                    $"link:</br></br><a href = \"{tokenLink}\">Confirm Email</a>");
+                    $"Por favor presione click en este enlace:" +
+                    $"</br></br><a href = \"{tokenLink}\">Confirmar Email</a>");
 
                 if (response.IsSuccess)
                 {
@@ -291,7 +291,5 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
 
             return View();
         }
-
-
     }
 }
