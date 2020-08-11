@@ -56,6 +56,7 @@ body {
 
 .the-fly {
     position: fixed;
+    display: block;
     right: 0;
     top: 10rem;
 }
