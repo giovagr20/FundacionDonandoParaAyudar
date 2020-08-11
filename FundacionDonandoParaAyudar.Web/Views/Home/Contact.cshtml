@@ -1,17 +1,103 @@
 ﻿@{
     ViewData["Title"] = "Contact";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+<div class="text-center mt-4">
+    <img src="~/images/contactanos.png" alt="Contactenos" class="mt-3 img-responsive"
+         style="width:auto; max-width:initial;" />
+</div>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div class="container">
+    <h3 class="text-center">
+        Información de Contacto
+        <br />
+        <img src="~/images/line_sub.png" alt="subline" />
+    </h3>
+    <p class="text-center">
+        ¿Inquietudes? No dude en contactarnos. Nuestros asesores están a su disposición ante cualquier sugerencia. Puede hacerlo por cualquiera de los siguientes canales.
+    </p>
+</div>
+<div class="row">
+    <div class="col-md-6 text-center">
+        <ul class="list-footer">
+            <ol>
+                <p>
+                    <i class="fas fa-home">
+                    </i>
+                    Aranjuez, Medellín, Colombia<br />
+                </p>
+            </ol>
+            <ol>
+                <p>
+                    <i class="fas fa-mobile-alt"></i>
+                    Colombia +57 (320) 5046954
+                </p>
+            </ol>
+            <ol>
+                <i class="fas fa-envelope"></i>
+                <strong>Soporte:</strong>
+                <a href="mailto:donandoparaayudar@gmail.com">donandoparaayudar@gmail.com</a>
+                <br />
+            </ol>
+        </ul>
+    </div>
+    <div class="col-md-6 text-center">
+        <form action="POST" class="ml-5 mr-5 text-center">
+            <div class="text-center">
+                <p class="text-uppercase mt-4">
+                    <b>Déjanos un mensaje</b>
+                </p>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Nombre">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Apellido">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col mt-2">
+                    <input type="email" class="form-control" placeholder="Correo">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col mt-2">
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col mt-2">
+                    <input class="btn btn-primary form-control" type="submit" value="Envianos una recomendación" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<div class="row mt-4">
+    <div class="col offset-md-2">
+        <img src="~/images/line_sub.png" alt="subline" class="text-center" />
+    </div>
+    <div class="col offset-md-2">
+        <img src="~/images/line_sub.png" alt="subline" class="text-center" />
+    </div>
+
+</div>
+
+    <section class="container mt-4">
+        <h3 class="text-center"> Nuestra Ubicación </h3>
+        <div class="row">
+            <div class="col-md-5 offset-md-2">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31727.21147117828!2d-75.57992951406882!3d6.276688517829071!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4428d1390dd14b%3A0xd4a077ea2c9ce810!2sAranjuez%2C%20Medell%C3%ADn%2C%20Antioquia!5e0!3m2!1ses!2sco!4v1597168579780!5m2!1ses!2sco"
+                        width="700"
+                        height="550"
+                        frameborder="0"
+                        style="border:0;"
+                        allowfullscreen=""
+                        aria-hidden="false"
+                        tabindex="0"
+                        class="text-center"></iframe>
+            </div>
+        </div>
+    </section>
+
