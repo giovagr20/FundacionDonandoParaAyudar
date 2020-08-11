@@ -4,43 +4,45 @@
     ViewData["Title"] = "Login";
 }
 
-<h2>Ingresar </h2>
 
-<div class="row">
-    <div class="col-md-4 offset-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly"></div>
+    <body class="text-center">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <img class="mb-4" src="~/images/bootstrap-solid.svg" alt="" width="90" height="120">
+                    <h1 class="h3 mb-3 font-weight-normal">Ingresar</h1>
+                    <div class="form-group">
+                        <label asp-for="Username" class="sr-only">Usuario</label>
+                        <input asp-for="Username" type="email" id="inputEmai" class="form-control" placeholder="Usuario" required="" autofocus="">
+                        <span asp-validation-for="Username" class="text-warning"></span>
+                    </div>
+                    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
 
-            <div class="form-group">
-                <label asp-for="Username">Username</label>
-                <input asp-for="Username" class="form-control" />
-                <span asp-validation-for="Username" class="text-warning"></span>
+                    <div class="form-group">
+                        <label asp-for="Password" class="sr-only">Clave</label>
+                        <input asp-for="Password" type="password" id="inputPassword" class="form-control" placeholder="Clave" required="">
+                        <span asp-validation-for="Password" class="text-warning"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input asp-for="RememberMe" type="checkbox" class="form-check-input" />
+                            <label asp-for="RememberMe" class="form-check-label">Recuerdame</label>
+                        </div>
+                        <span asp-validation-for="RememberMe" class="text-warning"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Ingresar" class="btn btn-success" />
+                        <a asp-action="Register" class="btn btn-primary">Registrarse</a>
+                        <a asp-action="RecoverPassword" class="btn btn-link">¿Olvidaste tu clave?</a>
+                    </div>
+                </form>
             </div>
-            <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        </div>
+        </body>
 
-            <div class="form-group">
-                <label asp-for="Password">Password</label>
-                <input asp-for="Password" type="password" class="form-control" />
-                <span asp-validation-for="Password" class="text-warning"></span>
-            </div>
-
-            <div class="form-group">
-                <div class="form-check">
-                    <input asp-for="RememberMe" type="checkbox" class="form-check-input" />
-                    <label asp-for="RememberMe" class="form-check-label">Recuerdame</label>
-                </div>
-                <span asp-validation-for="RememberMe" class="text-warning"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-success" />
-                <a asp-action="Register" class="btn btn-primary">Registrarse</a>
-                <a asp-action="RecoverPassword" class="btn btn-link">¿Olvidaste tu clave?</a>
-            </div>
-        </form>
-    </div>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

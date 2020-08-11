@@ -2,6 +2,10 @@
     ViewData["Title"] = "Home Page";
 }
 
+<section class="jumbotron text-center">
+    <h1 class="text-center" style="font-style:italic">
+        Fundación Donando Para Ayudar
+    </h1>
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleCaptions" data-slide-to="0" data-interval="4000" class="active"></li>
@@ -40,43 +44,57 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+</section>
 
-        <div class="row">
-            <div class="col-md-3">
-                <h2>Application uses</h2>
-                <ul>
-                    <li>Sample pages using ASP.NET Core MVC</li>
-                    <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <h2>How to</h2>
-                <ul>
-                    <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-                    <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-                    <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-                    <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-                    <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <h2>Overview</h2>
-                <ul>
-                    <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-                    <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-                    <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-                    <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-                    <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-                    <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-                    <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <h2>Run &amp; Deploy</h2>
-                <ul>
-                    <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-                    <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-                    <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-                </ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+               <img class="card-img-top" 
+                    src="~/images/fundacion.jpg"
+                    alt="About us"/>
+                <div class="card-body">
+                    <p class="card-text"><font style="vertical-align: inherit;">
+    Somos una fundación sin animo de lucro, nos enfocamos en población en situación de vulnerabilidad, no sólo con ayudas materiales,sino integraciones sociales, interacciones ludico-recreativas.</font></p>
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+            <a asp-area="" asp-controller="Home" asp-action="About"
+              class="btn btn-sm btn-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Conoce más aquí</font></font></a> 
+        </div>
+    </div>
+</div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Marcador de posición: miniatura"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                <div class="card-body">
+                    <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Esta es una tarjeta más amplia con texto de apoyo a continuación como una introducción natural a contenido adicional. </font><font style="vertical-align: inherit;">Este contenido es un poco más largo.</font></font></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ver</font></font></button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Editar</font></font></button>
+                        </div>
+                        <small class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 minutos</font></font></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Marcador de posición: miniatura"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                <div class="card-body">
+                    <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Esta es una tarjeta más amplia con texto de apoyo a continuación como una introducción natural a contenido adicional. </font><font style="vertical-align: inherit;">Este contenido es un poco más largo.</font></font></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ver</font></font></button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Editar</font></font></button>
+                        </div>
+                        <small class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 minutos</font></font></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
