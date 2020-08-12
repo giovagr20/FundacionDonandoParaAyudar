@@ -4,57 +4,66 @@
     ViewData["Title"] = "Register";
 }
 
-<h2>Registrate</h2>
-
-<h4>Usuario</h4>
+<div class="container mt-4 text-center">
+    <img src="~/images/fdpaLogin.png" alt="logo" class="img-responsive" height="100" width="100"/>
+    <h2 class="text-uppercase">Registrate</h2>
+    
+</div>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Register" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="container mt-2"> 
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form asp-action="Register" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="Username" class="control-label">Correo electronico</label>
-                <input asp-for="Username" class="form-control" />
-                <span asp-validation-for="Username" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="Username">Correo Electronico</label>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">@@</span>
+                        <input asp-for="Username" class="form-control" placeholder="fundacion@example.com" required="" />
+                        
+                    </div>
+                    <span asp-validation-for="Username" class="text-danger"></span>
+
+                </div>
+
+
+                    <partial name="_User" />
+
+                    <div class="form-group">
+                        <label asp-for="UserTypeId" class="control-label">Rol</label>
+                        <select asp-for="UserTypeId" asp-items="Model.UserTypes" class="form-control"></select>
+                        <span asp-validation-for="UserTypeId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label">Clave</label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="PasswordConfirm" class="control-label">Confirmar clave</label>
+                        <input asp-for="PasswordConfirm" class="form-control" />
+                        <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <input type="submit" value="Registrarse" class="btn btn-primary" />
+                    </div>
+                </form>
             </div>
-
-            <partial name="_User" />
-
-            <div class="form-group">
-                <label asp-for="UserTypeId" class="control-label">Rol</label>
-                <select asp-for="UserTypeId" asp-items="Model.UserTypes" class="form-control"></select>
-                <span asp-validation-for="UserTypeId" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Password" class="control-label">Clave</label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="PasswordConfirm" class="control-label">Confirmar clave</label>
-                <input asp-for="PasswordConfirm" class="form-control" />
-                <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Registrarse" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-<div class="alert alert-success" role="alert">
-    <p>
-        @ViewBag.Message
-    </p>
-</div>
+    <div class="alert alert-success" role="alert">
+        <p>
+            @ViewBag.Message
+        </p>
+    </div>
 
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
 
 
