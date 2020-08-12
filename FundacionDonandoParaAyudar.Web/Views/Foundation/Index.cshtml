@@ -4,61 +4,64 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Nuestra fundación</h2>
 <hr />
+    <div class="container text-center mt-4">
+        <img src="~/images/fdpaLogin.png" alt="Logo" width="70" height="70"/>
+        <h2 class="text-uppercase">Nuestra fundación</h2>
+    </div>
+<hr />
+    <div class="container">
+            <a asp-action="Create" class="btn btn-primary">Crear comentario</a>
+    </div>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Crear comentario</a>
-</p>
-
-<br />
-<br />
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Avatar
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User.FullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Comments)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <img src="@Url.Content(item.User.PicturePath)"
-                         alt="Image" style="width:50px;height:50px;max-width: 100%; height: auto;" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Comments)
-                </td>
-                @if (User.Identity.IsAuthenticated)
+<hr />
+<div class="container">
+    <h2 class="text-uppercase">
+        Mira aquí los comentarios!
+    </h2>
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        Avatar
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.User.FullName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Comments)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
                 {
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalles</a>
-                        <button data-id="@item.Id" class="btn btn-danger deleteItem"
-                                data-toggle="modal"
-                                data-target="#deleteDialog">
-                            Borrar
-                        </button>
-                    </td>
+                    <tr>
+                        <td>
+                            <img src="@Url.Content(item.User.PicturePath)"
+                                 alt="Image" style="width:50px;height:50px;max-width: 100%; height: auto;" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Comments)
+                        </td>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                        {
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalles</a>
+                            </td>
+                        }
+                    </tr>
                 }
-            </tr>
-        }
-    </tbody>
-</table>
-
+            </tbody>
+        </table>
+    </div>
+</div>
 <partial name="_DeleteDialog" />
 
 @section Scripts {

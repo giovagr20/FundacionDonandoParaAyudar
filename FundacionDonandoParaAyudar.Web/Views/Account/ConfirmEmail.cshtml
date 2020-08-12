@@ -3,9 +3,14 @@
     ViewData["Title"] = "ConfirmEmail";
 }
 
-<h2>@ViewData["Title"]</h2>
-<div>
-    <p>
-        Gracias por confirmar el correo. Ahora puedes seguir!
-    </p>
-</div>
+    <div class="container text-center mt-4">
+        <h2> El correo se confirmó! </h2>
+        <p class="text-muted">
+            Ahora puedes seguir!
+        </p>
+    </div>
+    <div class="container text-center mt-4"> 
+        <a asp-area="" asp-controller="Account" asp-action="Login" class="btn btn-link active">
+            Regresar!
+        </a>
+    </div>
