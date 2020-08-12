@@ -32,6 +32,7 @@
             <div class="container bg-color">
                 <div class="collapse bg-color" id="navbarToggleExternalContent">
                     <div class="bg-color p-4">
+                        <h3 class="text-uppercase text-light style-text-data text-center">&hearts; - Nuestro Menu - &hearts; </h3>
                         <a asp-area="" asp-controller="Home" asp-action="Index"
                            class="nav-link text-uppercase text-light">
                         </a>
@@ -142,11 +143,69 @@
             @RenderBody()
             <hr />
             <div class="section footer_copyright">
-                <nav class="navbar navbar-dark bg-footer">
-                    <footer class="bottom">
-                        <p class="text-light ml-5">&copy;<b>Todos los derechos reservados. Fundacion Donando Para Ayudar - 2020</b></p>
-                    </footer>
-                </nav>
+                <div class="container bg-footer">
+                    <div class="row">
+                        <div class="col-md-4 text-left">
+                            <label class="text-light "><b>Siguenos en nuestras redes sociales: </b></label>
+                            <ol>
+                                <li>
+                                    <a class="img-responsive text-light left"
+                                       href="https://wa.me/573205046954?text=Hola%20me%20interesa%20saber%20más%20sobre%20la%20fundacion%20.."
+                                       target="_blank">
+                                        <i class="fab fa-whatsapp"></i>
+                                        +57 (320) 5046954
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="img-responsive text-light left"
+                                       href="https://www.youtube.com/channel/UCWrQqtIvx2Orp6QR3bJYbkw?view_as=subscriber"
+                                       target="_blank">
+                                        <i class="fab fa-youtube"></i>
+                                        Suscribete a nuestro canal
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="img-responsive text-light left"
+                                       href="https://www.facebook.com/fundaciondonandoparaayudar"
+                                       target="_blank">
+                                        <i class="fab fa-facebook"></i>
+                                        Síguenos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="img-responsive text-light left"
+                                       href="https://www.instagram.com/fundacion_donando_para_ayudar/?hl=es-la"
+                                       target="_blank">
+                                        <i class="fab fa-instagram"></i>
+                                        Síguenos
+                                    </a>
+                                </li>
+                            </ol>
+                            <a asp-controller="Home" asp-action="Privacy">
+                                Políticas de privacidad
+                            </a>
+                            <label class="text-light">|</label>
+                            <a asp-controller="Home" asp-action="Contact">
+                                Contactanos
+                            </a>
+                        </div>
+                        <br />
+                        <div class="col-4 mr-auto">
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 ml-auto">
+                                <footer class="bottom">
+                                    <p class="text-light">
+                                        &copy;<b>Todos los derechos reservados. Fundacion Donando Para Ayudar - 2020</b><br />
+                                        <small class="text-light text-right">&hearts; Colombia, Antioquia, Medellín </small>
+                                    </p>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         <environment include="Development">
@@ -154,7 +213,7 @@
                     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
                     crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-                    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN
+                    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
                     crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
                     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"

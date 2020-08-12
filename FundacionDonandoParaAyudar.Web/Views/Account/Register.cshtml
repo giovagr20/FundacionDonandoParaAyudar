@@ -4,66 +4,83 @@
     ViewData["Title"] = "Register";
 }
 
-<div class="container mt-4 text-center">
-    <img src="~/images/fdpaLogin.png" alt="logo" class="img-responsive" height="100" width="100"/>
-    <h2 class="text-uppercase">Registrate</h2>
-    
+<div class="container text-center mt-4">
+    <img class="img-responsive" src="~/images/fdpaLogin.png" alt="Registrarse"
+         height="100" width="100" />
+    <h2 class="active">Registrate</h2>
 </div>
 <hr />
-<div class="container mt-2"> 
+<div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <form asp-action="Register" enctype="multipart/form-data">
+            <h3 class="active text-center">Empieza con tu registro</h3>
+            <form asp-action="Register" enctype="multipart/form-data" class="mt-4">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                <div class="form-group">
-                    <label asp-for="Username">Correo Electronico</label>
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">@@</span>
-                        <input asp-for="Username" class="form-control" placeholder="fundacion@example.com" required="" />
-                        
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label asp-for="Username" class="control-label">Usuario</label>
+                        <div class="input-group mb-3">
+                            <input asp-for="Username" class="form-control" placeholder="Usuario"
+                                   aria-label="Usuario" aria-describedby="basic-addon2" />
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">@@example.com</span>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Username" class="text-danger"></span>
                     </div>
-                    <span asp-validation-for="Username" class="text-danger"></span>
-
                 </div>
 
+                <partial name="_User" />
 
-                    <partial name="_User" />
-
+                <div class="mb-3">
                     <div class="form-group">
                         <label asp-for="UserTypeId" class="control-label">Rol</label>
-                        <select asp-for="UserTypeId" asp-items="Model.UserTypes" class="form-control"></select>
-                        <span asp-validation-for="UserTypeId" class="text-danger"></span>
+                        <div class="input-group mb-3">
+                            <select asp-for="UserTypeId" asp-items="Model.UserTypes" class="form-control"></select>
+                            <span asp-validation-for="UserTypeId" class="text-danger"></span>
+                        </div>
                     </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label asp-for="Password" class="control-label">Clave</label>
+                            <div class="input-group mb-3">
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Ingresa clave" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label asp-for="PasswordConfirm" class="control-label">Confirmar clave</label>
+                            <div class="input-group mb-3">
+                                <input asp-for="PasswordConfirm" type="password" class="form-control" placeholder="Confirmar clave" />
+                                <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
                     <div class="form-group">
-                        <label asp-for="Password" class="control-label">Clave</label>
-                        <input asp-for="Password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="PasswordConfirm" class="control-label">Confirmar clave</label>
-                        <input asp-for="PasswordConfirm" class="form-control" />
-                        <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group text-center">
                         <input type="submit" value="Registrarse" class="btn btn-primary" />
                     </div>
-                </form>
+                </div>
+            </form>
+            <div class="mb-3">
+                <p class="alert-success" role="alert">
+                    @ViewBag.Message
+                </p>
             </div>
         </div>
     </div>
-    <div class="alert alert-success" role="alert">
-        <p>
-            @ViewBag.Message
-        </p>
-    </div>
+</div>
 
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
 
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

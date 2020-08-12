@@ -6,7 +6,7 @@
 
 <hr />
     <div class="container text-center mt-4">
-        <img src="~/images/fdpaLogin.png" alt="Logo" width="70" height="70"/>
+        <img src="~/images/fdpaLogin.png" alt="Logo" width="100" height="100"/>
         <h2 class="text-uppercase">Nuestra fundación</h2>
     </div>
 <hr />
@@ -49,7 +49,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Comments)
                         </td>
-                        @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                        @if (User.Identity.IsAuthenticated)
                         {
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>

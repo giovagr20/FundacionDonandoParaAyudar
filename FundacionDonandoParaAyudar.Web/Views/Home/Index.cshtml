@@ -3,9 +3,11 @@
     <div class="container">
         <div class="container">
             <div class="container">
+                <hr />
                 <h1 class="text-center mt-4" style="font-style:italic, oblique; font-family:Harabara;">
                     <b>Fundación Donando Para Ayudar</b>
                 </h1>
+                <hr />
                 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleCaptions" data-slide-to="0" data-interval="4000" class="active"></li>
@@ -44,17 +46,20 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
+                <hr />
             </div>
         </div>
     </div>
-            <hr />
-            <div class="container " style="font-style:italic, oblique; font-family:Harabara;">
-                <h1 class="text-center">Entérate    </h1>
-            </div>
 
+
+    <div class="container text-center" style="font-style:italic, oblique; font-family:Harabara;">
+        <img class="img-responsive" src="~/images/news.png" alt="Entertate" />
+        <h1 class="text-center">Entérate    </h1>
+    </div>
             <div class="container mt-4">
                 <div class="container">
                     <div class="container">
+                        <hr />
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="card mb-4 shadow-sm">
@@ -133,10 +138,37 @@
                             </div>
                         </div>
                     </div>
+                    <hr />
                 </div>
              </div>
-            <hr />
 
-            @section Scripts {
-                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-            }
+            <div class="container mt-2 text-center" style="font-style:italic, oblique; font-family:Harabara;">
+                <button type="button" class="btn btn-link text-center"
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="top"
+                        data-content="Podrás ver nuestros videos de la fundación">
+                    <img class="img-responsive" alt="Youtube"
+                         src="~/images/youtube.png" />
+                </button>
+                <h1 class="text-center">Videos</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-5 offset-md-1">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item"
+                                src="https://www.youtube.com/embed/akQoGtSVg10?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0"
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-md-5 offset-mr-auto">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item"
+                                src="https://www.youtube.com/embed/D4UBKu9ozgo?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0"
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+                    @section Scripts {
+                        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                    }

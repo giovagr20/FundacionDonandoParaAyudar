@@ -4,27 +4,62 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Entérate de nuestra fundación</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Usuario
-        </dt>
-        <dd>
-            @User.Identity.Name
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Comments)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Comments)
-        </dd>
-    </dl>
+<div class="container mt-4 text-center">
+    <a asp-controller="Foundation" asp-action="Index">
+        <img src="~/images/fdpaLogin.png" alt="Detalles" class="img-responsive"
+             width="100" height="100" />
+    </a>
+    <h3 class="text-uppercase">
+        Mira el detalle de tu comentario
+    </h3>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
-    <a asp-action="Index">Regresar</a>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-4 ml-auto">
+            <dl class="dl-horizontal">
+                <dt>
+                    Usuario
+                </dt>
+                <dd>
+                    @User.Identity.Name
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.User.Document)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.User.Document)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.User.FullName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.User.FullName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Comments)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Comments)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-4 mr-auto">
+            <dl class="dl-horizontal">
+                <dt>
+                    Tu Avatar
+                </dt>
+                <dd>
+                    <img src="@Url.Content(Model.User.PicturePath)" alt="Detalle Avatar"
+                         width="200" height="200" />
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col ml-auto text-center">
+            <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+            <a asp-action="Index">Regresar</a>
+        </div>
+    </div>
 </div>

@@ -41,6 +41,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             }
 
             var foundationEntity = await _context.Comments
+                .Include(c=>c.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (foundationEntity == null)
             {
