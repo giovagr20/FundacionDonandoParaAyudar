@@ -1,4 +1,6 @@
-﻿@{
+﻿@model FundacionDonandoParaAyudar.Web.Data.Entities.SendMessageEntity
+
+@{
     ViewData["Title"] = "Contact";
 }
 <div class="text-center mt-4">
@@ -13,7 +15,7 @@
         <img src="~/images/line_sub.png" alt="subline" />
     </h2>
     <p class="text-center">
-        ¿Inquietudes? No dude en contactarnos. 
+        ¿Inquietudes? No dude en contactarnos.
         Puede hacerlo por cualquiera de los siguientes canales.
     </p>
 </div>
@@ -21,29 +23,30 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center">
-                <ul class="list-footer">
-                    <ol>
+                <ol class="list-footer">
+                    <li>
                         <p>
                             <i class="fas fa-home">
                             </i>
                             Aranjuez, Medellín, Colombia<br />
                         </p>
-                    </ol>
-                    <ol>
+                    </li>
+                    <li>
                         <p>
                             <i class="fas fa-mobile-alt"></i>
                             Colombia +57 (320) 5046954
                         </p>
-                    </ol>
-                    <ol>
+                    </li>
+                    <li>
                         <i class="fas fa-envelope"></i>
                         Soporte:
                         <a href="mailto:donandoparaayudar@gmail.com">donandoparaayudar@gmail.com</a>
-                    </ol>
-                </ul>
+                    </li>
+                </ol>
             </div>
             <div class="col-md-6 text-center">
-                <form action="POST" class="ml-5 mr-5 text-center">
+                <form asp-action="Contact" enctype="multipart/form-data" class="ml-5 mr-5 text-center">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="text-center">
                         <p class="text-uppercase mt-4">
                             <b>Déjanos un mensaje</b>
@@ -51,28 +54,58 @@
                     </div>
                     <div class="form-row">
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Nombre">
+                            <input asp-for="FirstName" type="text" class="form-control" placeholder="Nombre">
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Apellido">
+                            <input asp-for="LastName" type="text" class="form-control" placeholder="Apellido">
+                            <span asp-validation-for="LastName" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col mt-2">
-                            <input type="email" class="form-control" placeholder="Correo">
+                            <div class="input-group-append">
+                                <input asp-for="Email" type="email" class="form-control" placeholder="Correo"
+                                       aria-describedby="basic-addon2">
+                                <span class="input-group-text" id="basic-addon2">@@example.com</span>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col mt-2">
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea asp-for="Message" class="form-control" rows="3" placeholder="Añade tu comentario y/o recomendación">
+                            </textarea>
+                            <span asp-validation-for="Message" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col mt-2">
-                            <input class="btn btn-primary form-control" type="submit" value="Envianos una recomendación" />
+                            <button type="button" class="btn btn-primary form-control"
+                                    data-toggle="modal" data-target="#exampleModal">
+                                Enviar mensaje
+                            </button>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <label class="text-success">
+                                                ¿Seguro quieres enviar el mensaje?
+                                            </label>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary form-control" data-dismiss="modal">Cerrar</button>
+                                            <input class="btn btn-primary form-control" type="submit" value="Sí" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </form>
+                <label class="text-success">
+                    @ViewBag.Message
+                </label>
             </div>
         </div>
     </div>
@@ -89,20 +122,20 @@
     </div>
 </div>
 
-    <section class="container mt-4">
-        <h3 class="text-center" style="font-style:italic, oblique; font-family:Harabara;"> Nuestra Ubicación </h3>
-        <div class="row">
-            <div class="col-md-5 offset-md-2">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31727.21147117828!2d-75.57992951406882!3d6.276688517829071!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4428d1390dd14b%3A0xd4a077ea2c9ce810!2sAranjuez%2C%20Medell%C3%ADn%2C%20Antioquia!5e0!3m2!1ses!2sco!4v1597168579780!5m2!1ses!2sco"
-                        width="700"
-                        height="550"
-                        frameborder="0"
-                        style="border:0;"
-                        allowfullscreen=""
-                        aria-hidden="false"
-                        tabindex="0"
-                        class="text-center"></iframe>
-            </div>
+<section class="container mt-4">
+    <h3 class="text-center" style="font-style:italic, oblique; font-family:Harabara;"> Nuestra Ubicación </h3>
+    <div class="row">
+        <div class="col-md-5 offset-md-2">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31727.21147117828!2d-75.57992951406882!3d6.276688517829071!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4428d1390dd14b%3A0xd4a077ea2c9ce810!2sAranjuez%2C%20Medell%C3%ADn%2C%20Antioquia!5e0!3m2!1ses!2sco!4v1597168579780!5m2!1ses!2sco"
+                    width="700"
+                    height="550"
+                    frameborder="0"
+                    style="border:0;"
+                    allowfullscreen=""
+                    aria-hidden="false"
+                    tabindex="0"
+                    class="text-center"></iframe>
         </div>
-    </section>
+    </div>
+</section>
 

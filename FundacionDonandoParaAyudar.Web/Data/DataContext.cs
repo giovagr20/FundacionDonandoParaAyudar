@@ -15,5 +15,6 @@ namespace FundacionDonandoParaAyudar.Web.Data
         }
         public DbSet<FoundationEntity> Comments { get; set; }
         public DbSet<UserGroupEntity> UserGroups { get; set; }
+        public DbSet<SendMessageEntity> SendMessages { get; set; }
     }
 }

@@ -169,6 +169,20 @@
                     </div>
                 </div>
             </div>
-                    @section Scripts {
-                        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-                    }
+            <div class="container mt-2 text-center" 
+                 style="font-style:italic, oblique; font-family:Harabara;">
+                <hr />
+                <h1 class="text-center">Comentarios hechos reciente</h1>
+                <div class="container">
+                    <a asp-action="Index" asp-controller="Foundation">
+                        <h2 class="text-uppercase">
+                            Mira aquí los comentarios!
+                        </h2>
+                    </a>
+                    <hr />
+                   @Html.Partial("_PartialComments")
+                </div>
+            </div>
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }

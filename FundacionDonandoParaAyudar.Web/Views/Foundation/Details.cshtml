@@ -22,7 +22,7 @@
                     Usuario
                 </dt>
                 <dd>
-                    @User.Identity.Name
+                    @Html.DisplayFor(model => model.User.UserName)
                 </dd>
                 <dt>
                     @Html.DisplayNameFor(model => model.User.Document)
