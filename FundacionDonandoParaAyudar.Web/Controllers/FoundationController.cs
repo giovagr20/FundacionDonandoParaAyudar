@@ -24,6 +24,16 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             _userHelper = userHelper;
         }
 
+        public async Task<IActionResult> MyComments()
+        {
+            string name = User.Identity.Name;
+            UserEntity user = await _userHelper.GetUserByEmailAsync(name);
+            return View(await _context.Comments
+                    .Include(c => c.User)
+                    .Where(c => c.User.Id == user.Id)
+                    .ToListAsync());
+        }
+
         // GET: Foundation
         public async Task<IActionResult> Index()
         {
@@ -41,6 +51,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             }
 
             var foundationEntity = await _context.Comments
+                .Include(c=>c.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (foundationEntity == null)
             {

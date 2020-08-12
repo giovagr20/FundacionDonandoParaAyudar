@@ -315,7 +315,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
                     "Account",
                     new { token = myToken }, protocol: HttpContext.Request.Scheme);
                 _mailHelper.SendMail(model.Email, "Clave cambiada", $"<h1>Cambiar clave</h1>" +
-                    $"Para cambiar la contrasela presiona click en este enlace:</br></br>" +
+                    $"Para cambiar la contraseña presiona click en este enlace:</br></br>" +
                     $"<a href = \"{link}\">Cambiar clave</a>");
                 ViewBag.Message = "Las instrucciones para recuperar tu clave ha sido enviado al correo.";
                 return View();

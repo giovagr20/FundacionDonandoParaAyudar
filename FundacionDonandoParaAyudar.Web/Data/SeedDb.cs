@@ -24,11 +24,11 @@ namespace FundacionDonandoParaAyudar.Web.Data
             await _dataContext.Database.EnsureCreatedAsync();
             await CheckRolesAsync();
             var admin1 = await CheckUserAsync("1010",
-                "Giovanni", 
-                "Gomez Restrepo", 
-                "giovannyg32@gmail.com", 
-                "300 634 2747", 
-                "Calle 1 # 1-1", 
+                "Giovanni",
+                "Gomez Restrepo",
+                "giovannyg32@gmail.com",
+                "300 634 2747",
+                "Calle 1 # 1-1",
                 UserType.Admin);
             var admin2 = await CheckUserAsync("2020",
                 "Hernan Yesid",
@@ -37,22 +37,6 @@ namespace FundacionDonandoParaAyudar.Web.Data
                 "300 200 1111",
                 "Calle 2 # 2-2",
                 UserType.Admin);
-            var user1 = await CheckUserAsync("3030", 
-                "Giovanni", 
-                "Gomez R", 
-                "giovannigomez198077@correo.itm.edu.co", 
-                "300 121 5847", 
-                "Calle 2 # 2-2", 
-                UserType.User);
-            var user2 = await CheckUserAsync("4040",
-                "Hernan Yesid",
-                "Gomez Osorio",
-                "yesiduser@yopmail.com",
-                "300 200 2850",
-                "Calle 3 # 2-2",
-                UserType.User);
-
-            await CheckCommentsAsync(user1, user2);
         }
 
         private async Task<UserEntity> CheckUserAsync(

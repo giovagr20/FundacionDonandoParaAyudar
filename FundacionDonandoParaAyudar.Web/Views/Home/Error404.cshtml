@@ -3,8 +3,14 @@
     ViewData["Title"] = "Error404";
 }
 
-<br />
-<br />
-<img src="~/images/404error.png" />
-<h2>Lo sentimos, no se encuentra la página</h2>
+<div class="container mt-4">
+    <img src="~/images/error404.png" alt="Error 404"/>
+    <hr />
 
+    <h2 class="text-muted text-center">
+        Lo sentimos, no se encuentra la página
+    </h2>
+    <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-link text-center ">
+        Click aquí para regresar
+    </a>
+</div>

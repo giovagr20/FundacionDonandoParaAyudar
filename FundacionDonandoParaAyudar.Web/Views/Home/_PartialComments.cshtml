@@ -1,0 +1,31 @@
+﻿@model IEnumerable<FundacionDonandoParaAyudar.Web.Data.Entities.FoundationEntity>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    Usuario
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comments)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@Url.Content(item.User.PicturePath)"
+                             alt="Image" style="width:50px;height:50px;max-width: 100%; height: auto;" />
+                        @Html.DisplayFor(modelItem => item.User.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comments)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

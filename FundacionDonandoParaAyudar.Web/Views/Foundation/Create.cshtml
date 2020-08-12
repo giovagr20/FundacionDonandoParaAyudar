@@ -4,19 +4,21 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Crear comentario</h2>
-
-<h4>Comentanos</h4>
+<div class="container text-center mt-4">
+    <img src="~/images/fdpaLogin.png" alt="Crear Comentario"
+         class="img-responsive" width="100" height="100"/>
+    <p class="">¿Quieres añadir un comentario?</p>
+</div>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 offset-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <partial name="_Foundation" />
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Añade tu comentario" class="btn btn-primary" /> <br />
                 <a asp-action="Index" class="btn btn-success">Regresar</a>
             </div>
         </form>
