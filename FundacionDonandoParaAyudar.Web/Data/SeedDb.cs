@@ -24,6 +24,7 @@ namespace FundacionDonandoParaAyudar.Web.Data
             await _dataContext.Database.EnsureCreatedAsync();
             await CheckRolesAsync();
             var admin1 = await CheckUserAsync("1010",
+                DocumentType.CC,
                 "Giovanni",
                 "Gomez Restrepo",
                 "giovannyg32@gmail.com",
@@ -31,6 +32,7 @@ namespace FundacionDonandoParaAyudar.Web.Data
                 "Calle 1 # 1-1",
                 UserType.Admin);
             var admin2 = await CheckUserAsync("2020",
+                DocumentType.PA,
                 "Hernan Yesid",
                 "Gomez Osorio",
                 "yesid@yopmail.com",
@@ -41,6 +43,7 @@ namespace FundacionDonandoParaAyudar.Web.Data
 
         private async Task<UserEntity> CheckUserAsync(
             string document,
+            DocumentType documentType,
             string firstName,
             string lastName,
             string email,
@@ -60,7 +63,8 @@ namespace FundacionDonandoParaAyudar.Web.Data
                     PhoneNumber = phone,
                     Address = address,
                     Document = document,
-                    UserType = userType
+                    UserType = userType,
+                    DocumentType = documentType
                 };
 
                 await _userHelper.AddUserAsync(user, "123456");

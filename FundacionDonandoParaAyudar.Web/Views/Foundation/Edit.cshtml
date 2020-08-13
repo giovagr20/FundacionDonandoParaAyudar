@@ -4,12 +4,12 @@
     ViewData["Title"] = "Editar";
 }
 
-    <div class="container text-center mt-4">
+    <div class="container text-center mt-4" style="font-style:italic, oblique; font-family:Harabara;">
         <a asp-controller="Foundation" asp-action="Index">
-            <img src="~/images/fdpaLogin.png" alt="Editar"
-                 width="100" height="100" />
+            <img src="~/images/Fundacion/FDPATransparente.png" alt="Editar" class="img-responsive mt-4"
+                 width="150" height="150" />
         </a>
-        <h4>Edita tu comentario</h4>
+        <h3 class="text-purple text-uppercase">Edita tu comentario</h3>
     </div>
 <hr />
 <div class="container">
@@ -21,7 +21,7 @@
 
                 <partial name="_Foundation" />
 
-                <div class="form-group">
+                <div class="form-group" style="font-style:italic, oblique; font-family:Harabara;">
                     <input type="submit" value="Editar" class="btn btn-primary" />
                     <a asp-action="Index" class="btn btn-success">Regresar</a>
                 </div>

@@ -32,7 +32,9 @@
             <div class="container bg-color">
                 <div class="collapse bg-color" id="navbarToggleExternalContent">
                     <div class="bg-color p-4">
-                        <h3 class="text-uppercase text-light style-text-data text-center">&hearts; - Nuestro Menu - &hearts; </h3>
+                        <img src="~/images/Fundacion/FDPATransparente.png" alt="Logo" 
+                             width="70" height="70"/>
+                        <h3 class="text-uppercase text-light style-text-data">&hearts; - Nuestro Menu - &hearts; </h3>
                         <a asp-area="" asp-controller="Home" asp-action="Index"
                            class="nav-link text-uppercase text-light">
                         </a>
@@ -62,7 +64,10 @@
                                 <li class="nav-item">
                                     <a asp-area="" asp-controller="Account" asp-action="ChangeUser"
                                        class="nav-link text-uppercase text-light style-text-data">
-                                        <i class="fas fa-user-tag"></i> @User.Identity.Name
+                                        <i class="fas fa-user-tag"></i>
+                                        <small class="style-text-data">Edita tu perfil</small><br />
+
+                                        @User.Identity.Name
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -93,7 +98,7 @@
                         <span class="navbar-toggler-icon" />
                     </button>
                     <a asp-area="" asp-controller="Home" asp-action="Index">
-                        <img src="~/images/FDPA.jpg" alt="Logo_FDPA"
+                        <img src="~/images/Fundacion/FDPATransparente.png" alt="Logo_FDPA"
                              style="width: 60px; height:60px; max-width:inherit;" />
                         <span class="navbar-text style-text-data">
                             F <i class="fas fa-heartbeat"></i>

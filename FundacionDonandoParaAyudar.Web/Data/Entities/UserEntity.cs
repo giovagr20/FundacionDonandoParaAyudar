@@ -12,6 +12,10 @@ namespace FundacionDonandoParaAyudar.Web.Data.Entities
         [Required(ErrorMessage = "El campo {0} es mandatorio.")]
         public string Document { get; set; }
 
+        [Display(Name = "Elegir")]
+        [Required(ErrorMessage = "El campo {0} es mandatorio.")]
+        public DocumentType DocumentType { get; set; }
+
         [Display(Name = "Nombre")]
         [MaxLength(50, ErrorMessage = "El {0} campo no puede tener más de {1} caracteres.")]
         [Required(ErrorMessage = "El campo {0} es mandatorio.")]

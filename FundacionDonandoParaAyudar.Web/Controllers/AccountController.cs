@@ -35,7 +35,6 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             _combosHelper = combosHelper;
             _mailHelper = mailHelper;
         }
-
         public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
@@ -61,7 +60,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-            ModelState.AddModelError(string.Empty, "Error al ingresar, volver a intentarlo");
+            ModelState.AddModelError(string.Empty, "Usuario y/o clave incorrecto");
             return View(model);
         }
 
@@ -78,10 +77,13 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
 
         public IActionResult Register()
         {
+
             AddUserViewModel model = new AddUserViewModel
             {
-                UserTypes = _combosHelper.GetComboRoles()
+                UserTypes = _combosHelper.GetComboRoles(),
+                DocumentTypes = _combosHelper.GetComboDocumentTypes()
             };
+
 
             return View(model);
         }
@@ -145,6 +147,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             }
 
             model.UserTypes = _combosHelper.GetComboRoles();
+            model.DocumentTypes = _combosHelper.GetComboDocumentTypes();
             return View(model);
         }
 

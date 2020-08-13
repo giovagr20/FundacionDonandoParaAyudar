@@ -16,13 +16,17 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
     {
         private readonly DataContext _context;
         private readonly IMailHelper _mailHelper;
+        private readonly IUserHelper _userHelper;
+        private ReceiveDataModel _dataModel;
 
         public HomeController(
             DataContext context,
-            IMailHelper mailHelper)
+            IMailHelper mailHelper,
+            IUserHelper userHelper)
         {
             _context = context;
             _mailHelper = mailHelper;
+            _userHelper = userHelper;
         }
 
         public async Task<IActionResult> _PartialComments()
@@ -73,8 +77,15 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
                     ViewBag.Message = "Ha sido enviado el mensaje";
                     _context.Add(model);
                     await _context.SaveChangesAsync();
+                    UserEntity user = await _userHelper.GetUserAsync(model.Email);
+                    if (user == null)
+                    {
+                        _dataModel = new ReceiveDataModel(model.Email, model.FirstName, model.LastName);
+                        
+                        ViewBag.Message = "Si quieres conocer más acerca de la fundación, te invitamos a registrarte";
+                        return RedirectToAction("Register", "Account");
+                    }
                     return RedirectToAction(nameof(Contact));
-                    //"$<div class=""modal"" tabindex=""- 1""><div class=""modal-dialog""><div class=""modal-content""><div class=""modal-body""><p>Ha sido enviado el correo con exito.</p></div><div class=""modal-footer""><button type=""button"" class=""btn btn-secondary"" data-dismiss=""modal"">Cerrar</button></div></div></div></div>";
                 }
             }
             return View(model);
