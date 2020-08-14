@@ -3,11 +3,14 @@
     <div class="form-group">
         <label asp-for="Document" class="control-label">Documento</label>
         <div class="input-group mb-3">
-            <select asp-for="DocumentTypeId" asp-items="Model.DocumentTypes" class="form-control"
-                    id="inputGroupSelect01"></select>
+            <select class="custom-select-xs" id="inputGroupSelect01">
+                <option selected>Tipo</option>
+                <option value="1">C.C</option>
+                <option value="2">T.I</option>
+                <option value="3">C.E</option>
+            </select>
             <input asp-for="Document" class="form-control" placeholder="Documento" />
         </div>
-        <span asp-validation-for="DocumentTypeId" class="text-danger"></span>
         <span asp-validation-for="Document" class="text-danger"></span>
     </div>
 

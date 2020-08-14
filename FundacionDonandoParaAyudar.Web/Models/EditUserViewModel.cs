@@ -41,10 +41,5 @@ namespace FundacionDonandoParaAyudar.Web.Models
         [Display(Name = "Foto  url")]
         public string PicturePath { get; set; }
 
-        [Required(ErrorMessage = "El campo {0} es mandatorio.")]
-        [Display(Name = "Tipo documento")]
-        [Range(1, int.MaxValue, ErrorMessage = "Debes elegir el tipo de documento")]
-        public int DocumentTypeId { get; set; }
-        public IEnumerable<SelectListItem> DocumentTypes { get; set; }
     }
 }

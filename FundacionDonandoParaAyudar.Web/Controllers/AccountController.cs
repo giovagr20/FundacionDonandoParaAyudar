@@ -80,8 +80,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
 
             AddUserViewModel model = new AddUserViewModel
             {
-                UserTypes = _combosHelper.GetComboRoles(),
-                DocumentTypes = _combosHelper.GetComboDocumentTypes()
+                UserTypes = _combosHelper.GetComboRoles()
             };
 
 
@@ -147,7 +146,6 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             }
 
             model.UserTypes = _combosHelper.GetComboRoles();
-            model.DocumentTypes = _combosHelper.GetComboDocumentTypes();
             return View(model);
         }
 
