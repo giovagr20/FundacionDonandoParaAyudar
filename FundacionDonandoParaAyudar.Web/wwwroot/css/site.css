@@ -83,3 +83,11 @@ body {
 .text-purple {
     color: #7952b3;
 }
+
+.cointainerdata {
+    width: 100%;
+    padding-right: 7px;
+    padding-left: 7px;
+    margin-right: auto;
+    margin-left: auto;
+}
