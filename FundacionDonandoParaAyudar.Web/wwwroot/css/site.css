@@ -61,6 +61,13 @@ body {
     top: 10rem;
 }
 
+.donate {
+    position: fixed;
+    display: block;
+    left: 0;
+    top: 15rem;
+}
+
 .list-footer {
     list-style: none;
     margin: 0;

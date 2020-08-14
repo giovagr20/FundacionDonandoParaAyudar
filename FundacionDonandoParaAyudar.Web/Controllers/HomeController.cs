@@ -29,6 +29,13 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             _userHelper = userHelper;
         }
 
+        public async Task<IActionResult> _UploadImage()
+        {
+            return PartialView(await _context.Comments
+                  .Include(c => c.Comments)
+                  .ToListAsync());
+        }
+
         public async Task<IActionResult> _PartialComments()
         {
             return PartialView(await _context.Comments
@@ -36,6 +43,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
                   .Take(3)
                   .ToListAsync());
         }
+
 
         public async Task<IActionResult> Index()
         {

@@ -6,6 +6,8 @@
         <title>Donando Para Ayudar</title>
 
         <environment include="Development">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
                   integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
                   crossorigin="anonymous">
@@ -16,6 +18,9 @@
                   crossorigin="anonymous">
         </environment>
         <environment exclude="Development">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
                   integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
                   crossorigin="anonymous">
@@ -32,8 +37,8 @@
             <div class="container bg-color">
                 <div class="collapse bg-color" id="navbarToggleExternalContent">
                     <div class="bg-color p-4">
-                        <img src="~/images/Fundacion/FDPATransparente.png" alt="Logo" 
-                             width="70" height="70"/>
+                        <img src="~/images/Fundacion/FDPATransparente.png" alt="Logo"
+                             width="70" height="70" />
                         <h3 class="text-uppercase text-light style-text-data">&hearts; - Nuestro Menu - &hearts; </h3>
                         <a asp-area="" asp-controller="Home" asp-action="Index"
                            class="nav-link text-uppercase text-light">
@@ -98,18 +103,22 @@
                         <span class="navbar-toggler-icon" />
                     </button>
                     <a asp-area="" asp-controller="Home" asp-action="Index">
-                        <img src="~/images/Fundacion/FDPATransparente.png" alt="Logo_FDPA"
-                             style="width: 60px; height:60px; max-width:inherit;" />
                         <span class="navbar-text style-text-data">
                             F <i class="fas fa-heartbeat"></i>
                             D <i class="fas fa-heartbeat"></i>
                             P <i class="fas fa-heartbeat"></i>
                             A
                         </span>
+                        <img src="~/images/Fundacion/FDPATransparente.png" alt="Logo_FDPA"
+                             style="width: 60px; height:60px; max-width:inherit;" />
                     </a>
                 </nav>
             </div>
         </div>
+
+
+
+
 
         <ul class="list-group list-group-flush the-fly">
             <li class="list-group-item list-group-item-action ">
@@ -140,10 +149,43 @@
                          style="width:50%; height:50%; max-width:inherit;" />
                 </a>
             </li>
+
         </ul>
 
+        <ul class="list-group list-group-flush donate">
+            <li class="list-group-item list-group-item-action ">
 
-        <partial name="_CookieConsentPartial" />
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <img src="~/images/donate.png" alt="Donar"
+                         class="img-responsive" width="32" height="32" />
+                </button>
+            </li>
+        </ul>
+
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h4 class="modal-title text-purple">Apoyanos donando!</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <div class="modal-body">
+                            Ayuda a nuestra fundación
+                            <br />
+                            Dona a nuestra cuenta de ahorros Bancolombia # 00000000
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <partial name="_CookieConsentPartial" />
 
             @RenderBody()
             <hr />
@@ -191,7 +233,7 @@
                             </a>
                             <label class="text-light">|</label>
                             <a asp-controller="Home" asp-action="Contact">
-                                Contactanos
+                                Contáctanos
                             </a>
                         </div>
                         <div class="col-md-4 mr-auto">
@@ -212,7 +254,7 @@
                                 </p>
                                 <p class="text-light">
                                     <i class="fas fa-mobile-alt">
-                                        </i> Colombia +57 (320) 5046954
+                                    </i> Colombia +57 (320) 5046954
                                 </p>
                             </div>
                         </div>
@@ -221,7 +263,7 @@
                         <div class="row">
                             <div class="col-md-4 ml-auto">
                                 <footer class="bottom">
-                                    <p class="text-light">
+                                    <p class="text-light text-left">
                                         &copy;<b>Todos los derechos reservados. Fundacion Donando Para Ayudar - 2020</b><br />
                                         <small class="text-light text-right">&hearts; Colombia, Antioquia, Medellín </small>
                                     </p>
@@ -247,31 +289,38 @@
                 </div>
             </div>
 
-        <environment include="Development">
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-                    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-                    crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-                    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-                    crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-                    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-                    crossorigin="anonymous"></script>
-            <script src="~/js/site.js" asp-append-version="true"></script>
-        </environment>
-        <environment exclude="Development">
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-                    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-                    crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-                    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-                    crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-                    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-                    crossorigin="anonymous"></script>
-            <script src="~/js/site.min.js" asp-append-version="true"></script>
-        </environment>
+            <environment include="Development">
+                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+                        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+                        crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+                        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+                        crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+                        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+                        crossorigin="anonymous"></script>
+                <script src="~/js/site.js" asp-append-version="true"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            </environment>
 
-        @RenderSection("Scripts", required: false)
+            <environment exclude="Development">
+                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+                        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+                        crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+                        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+                        crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+                        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+                        crossorigin="anonymous"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                <script src="~/js/site.min.js" asp-append-version="true"></script>
+            </environment>
+
+            @RenderSection("Scripts", required: false)
     </body>
     </html>
