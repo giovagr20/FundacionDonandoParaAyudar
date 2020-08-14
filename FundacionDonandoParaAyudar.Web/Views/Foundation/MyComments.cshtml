@@ -72,9 +72,14 @@
     <a asp-action="Index" class="btn btn-link"><h5>Regresar</h5></a>
 </div>
 
-<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
-<script type="text/javascript">
+@section Scripts{
+
+
+
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
         $(document).ready(function () {
             $('#MyTable').DataTable();
 
@@ -89,5 +94,6 @@
                 window.location.href = '/Foundation/Delete/' + item_to_delete;
             });
         });
-</script>
+    </script>
 
+}

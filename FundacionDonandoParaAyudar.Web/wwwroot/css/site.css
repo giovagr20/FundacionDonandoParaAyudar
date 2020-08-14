@@ -91,3 +91,15 @@ body {
     margin-right: auto;
     margin-left: auto;
 }
+
+.imageback {
+    background-image: url(../images/Fundacion/FDPATransparente.png), linear-gradient(328deg, #c8c8c8, #7952b3);
+    height: 480px;
+    width: 720px;
+}
+
+#imageback {
+    background-image: url(../images/Fundacion/FDPATransparente.png), linear-gradient(328deg, #c8c8c8, #7952b3);
+    height: 480px;
+    width: 720px;
+}
