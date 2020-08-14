@@ -155,7 +155,8 @@
         <ul class="list-group list-group-flush donate">
             <li class="list-group-item list-group-item-action ">
 
-                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" 
+                        data-target="#myModal" data-placement="right" title="Clickea para conocer ">
                     <img src="~/images/donate.png" alt="Donar"
                          class="img-responsive" width="32" height="32" />
                 </button>
@@ -167,18 +168,30 @@
                     <div class="modal-content">
 
                         <div class="modal-header">
-                            <h4 class="modal-title text-purple">Apoyanos donando!</h4>
+                            <div class="container text-center">
+                                <h2 class="modal-title text-purple text-center">
+                                    Apoyanos donando!
+                                </h2>
+                            </div>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
                         <div class="modal-body">
-                            Ayuda a nuestra fundación
-                            <br />
-                            Dona a nuestra cuenta de ahorros Bancolombia # 00000000
+                            <h4 class="text-center">
+                                Ayuda a nuestra fundación
+                            </h4>
+                            <div class="container text-center">
+                                <img src="~/images/logo-bancolombia.png" class="img-responsive" alt="Bancolombia"
+                                     style="width:40%; height:20%; max-width:inherit;" />
+                            </div>
+                            <p class="text-justify">
+                                Dona a nuestra cuenta de ahorros
+                                <b> Bancolombia #01234567891 </b>
+                            </p>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                         </div>
 
                     </div>
