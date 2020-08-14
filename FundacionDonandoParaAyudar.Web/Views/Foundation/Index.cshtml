@@ -27,8 +27,11 @@
         </h2>
     </div>
     <div class="table-responsive">
+        @if (!User.IsInRole("Admin"))
+        {
             <a asp-action="Create" class="btn btn-primary mb-2"
                style="font-style:italic, oblique; font-family:Harabara;">Crear comentario</a>
+        }
         <table class="table table-hover table-sm">
             <thead class="thead-dark" style="font-style:italic, oblique; font-family:Harabara;">
                 <tr>
@@ -36,6 +39,7 @@
                         Avatar
                     </th>
                     <th>
+                        v
                         @Html.DisplayNameFor(model => model.User.FullName)
                     </th>
                     <th>
@@ -60,9 +64,16 @@
                         </td>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <td>
-                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-link">Ver Detalles</a>
-                            </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-link">Ver Detalles</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal"
+                                    data-target="#deleteDialog">
+                                Borrar
+                            </button>
+                        }
+                    </td>
                         }
                     </tr>
                 }
@@ -77,6 +88,7 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
     <script type="text/javascript">
@@ -95,5 +107,6 @@
             });
         });
     </script>
+
 }
 
