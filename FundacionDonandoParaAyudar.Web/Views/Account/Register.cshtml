@@ -4,19 +4,17 @@
     ViewData["Title"] = "Register";
 }
 
-<div class="container text-center mt-4">
-    <img class="img-responsive" src="~/images/fdpaLogin.png" alt="Registrarse"
+<div class="container text-center mt-4" style="font-style:italic, oblique; font-family:Harabara;">
+    <img class="img-responsive mt-4" src="~/images/Fundacion/FDPATransparente.png" alt="Registrarse"
          height="100" width="100" />
-    <h2 class="active">Registrate</h2>
+    <h2 class="active text-uppercase">Registrate</h2>
 </div>
 <hr />
-<div class="container">
+<div class="container" style="font-style:italic, oblique; font-family:Harabara;">
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h3 class="active text-center">Empieza con tu registro</h3>
             <form asp-action="Register" enctype="multipart/form-data" class="mt-4">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
                 <div class="mb-3">
                     <div class="form-group">
                         <label asp-for="Username" class="control-label">Usuario</label>
@@ -38,8 +36,8 @@
                         <label asp-for="UserTypeId" class="control-label">Rol</label>
                         <div class="input-group mb-3">
                             <select asp-for="UserTypeId" asp-items="Model.UserTypes" class="form-control"></select>
-                            <span asp-validation-for="UserTypeId" class="text-danger"></span>
                         </div>
+                        <span asp-validation-for="UserTypeId" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -49,8 +47,8 @@
                             <label asp-for="Password" class="control-label">Clave</label>
                             <div class="input-group mb-3">
                                 <input asp-for="Password" type="password" class="form-control" placeholder="Ingresa clave" />
-                                <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
+                            <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
@@ -58,11 +56,12 @@
                             <label asp-for="PasswordConfirm" class="control-label">Confirmar clave</label>
                             <div class="input-group mb-3">
                                 <input asp-for="PasswordConfirm" type="password" class="form-control" placeholder="Confirmar clave" />
-                                <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
                             </div>
+                            <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="mb-3">
                     <div class="form-group">
                         <input type="submit" value="Registrarse" class="btn btn-primary" />

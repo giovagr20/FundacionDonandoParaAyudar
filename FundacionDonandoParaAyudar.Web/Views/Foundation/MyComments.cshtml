@@ -1,20 +1,21 @@
 ﻿@model IEnumerable<FundacionDonandoParaAyudar.Web.Data.Entities.FoundationEntity>
 
 <hr />
-<div class="container text-center mt-4">
+<div class="container text-center mt-4" style="font-style:italic, oblique; font-family:Harabara;">
     <a asp-action="Index" asp-controller="Foundation">
-        <img src="~/images/fdpaLogin.png" alt="Logo" width="100" height="100" />
+        <img src="~/images/Fundacion/FDPATransparente.png" alt="Logo" width="150" height="150"
+             class="img-responsive mt-4"/>
     </a>
-    <h2 class="text-uppercase">Mis comentarios</h2>
+    <h2 class="text-uppercase text-purple">Mis comentarios</h2>
 </div>
 <hr />
 <div class="container">
-    <h2 class="text-uppercase">
+    <h2 class="text-uppercase" style="font-style:italic, oblique; font-family:Harabara;">
         Mira aquí los comentarios!
     </h2>
     <div class="table-responsive">
-        <table class="table">
-            <thead class="thead-dark">
+        <table class="table table-hover table-sm">
+            <thead class="thead-dark" style="font-style:italic, oblique; font-family:Harabara;">
                 <tr>
                     <th>
                         Avatar
@@ -28,7 +29,7 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="font-style:italic, oblique; font-family:Harabara;">
                 @foreach (var item in Model)
                 {
                     <tr>
@@ -54,5 +55,8 @@
             </tbody>
         </table>
     </div>
+</div>
+<div class="container mt-2" style="font-style:italic, oblique; font-family:Harabara;">
+    <a asp-action="Index" class="btn btn-link"><h5>Regresar</h5></a>
 </div>
 

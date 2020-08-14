@@ -10,5 +10,6 @@ namespace FundacionDonandoParaAyudar.Web.Helpers
     {
         IEnumerable<SelectListItem> GetComboRoles();
 
+        IEnumerable<SelectListItem> GetComboDocumentTypes();
     }
 }

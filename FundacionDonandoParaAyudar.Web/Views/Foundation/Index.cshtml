@@ -1,27 +1,36 @@
 ﻿@model IEnumerable<FundacionDonandoParaAyudar.Web.Data.Entities.FoundationEntity>
 
-@{
-    ViewData["Title"] = "Index";
-}
+<hr />
+<div class="container text-center mt-4">
+    <img src="~/images/Fundacion/FDPATransparente.png" alt="Logo" width="100" height="100" />
+    <h2 class="text-uppercase text-purple" style="font-style:italic, oblique; font-family:Harabara;">Nuestra fundación</h2>
+</div>
 
+<div class="container text-left">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link text-purple" href="#programs"
+               style="font-style:italic, oblique; font-family:Harabara;">Nuestros programas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-purple" href="#dataSlide"
+               style="font-style:italic, oblique; font-family:Harabara;">Comentarios</a>
+        </li>
+    </ul>
+</div>
 <hr />
-    <div class="container text-center mt-4">
-        <img src="~/images/fdpaLogin.png" alt="Logo" width="100" height="100"/>
-        <h2 class="text-uppercase">Nuestra fundación</h2>
+<div class="container" id="dataSlide">
+    <div class="container text-center">
+        <img src="~/images/chat_comments.png" alt="Chat comentarios" class="img-responsive" />
+        <h2 class="text-uppercase mb-4" style="font-style:italic, oblique; font-family:Harabara;">
+            Mira aquí los comentarios!
+        </h2>
     </div>
-<hr />
-    <div class="container">
-            <a asp-action="Create" class="btn btn-primary">Crear comentario</a>
-            <a asp-action="MyComments" class="btn btn-link">Ver todos mis comentarios </a>
-    </div>
-<hr />
-<div class="container">
-    <h2 class="text-uppercase">
-        Mira aquí los comentarios!
-    </h2>
     <div class="table-responsive">
-        <table class="table">
-            <thead class="thead-dark">
+            <a asp-action="Create" class="btn btn-primary mb-2"
+               style="font-style:italic, oblique; font-family:Harabara;">Crear comentario</a>
+        <table class="table table-hover table-sm">
+            <thead class="thead-dark" style="font-style:italic, oblique; font-family:Harabara;">
                 <tr>
                     <th>
                         Avatar
@@ -35,7 +44,7 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="font-style:italic, oblique; font-family:Harabara;">
                 @foreach (var item in Model)
                 {
                     <tr>
@@ -60,7 +69,10 @@
             </tbody>
         </table>
     </div>
+    <a asp-action="MyComments" class="btn btn-link"
+       style="font-style:italic, oblique; font-family:Harabara;">Ver todos mis comentarios </a>
 </div>
+
 <partial name="_DeleteDialog" />
 
 @section Scripts {
