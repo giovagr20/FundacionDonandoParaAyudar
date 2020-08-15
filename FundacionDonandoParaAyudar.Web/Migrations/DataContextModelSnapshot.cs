@@ -38,6 +38,33 @@ namespace FundacionDonandoParaAyudar.Web.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("FundacionDonandoParaAyudar.Web.Data.Entities.SendMessageEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SendMessages");
+                });
+
             modelBuilder.Entity("FundacionDonandoParaAyudar.Web.Data.Entities.UserEntity", b =>
                 {
                     b.Property<string>("Id")
@@ -54,6 +81,9 @@ namespace FundacionDonandoParaAyudar.Web.Migrations
                     b.Property<string>("Document")
                         .IsRequired()
                         .HasMaxLength(20);
+
+                    b.Property<string>("DocumentType")
+                        .IsRequired();
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);

@@ -42,7 +42,7 @@ namespace FundacionDonandoParaAyudar.Web.Helpers
                 PicturePath = path,
                 PhoneNumber = model.PhoneNumber,
                 UserName = model.Username,
-                UserType = model.UserTypeId == 1 ? UserType.Admin : UserType.User
+                UserType = model.UserTypeId == 0 ? UserType.Admin : UserType.User
             };
 
             IdentityResult result = await _userManager.CreateAsync(userEntity, model.Password);
@@ -139,6 +139,5 @@ namespace FundacionDonandoParaAyudar.Web.Helpers
         {
             return await _userManager.ResetPasswordAsync(user, token, password);
         }
-
     }
 }

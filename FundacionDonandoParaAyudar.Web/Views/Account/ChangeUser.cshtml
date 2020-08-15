@@ -7,30 +7,39 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Editar perfil</h2>
-
-<h4>Usuario: @User.Identity.Name</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="ChangeUser" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="PicturePath" />
-
-            <partial name="_User" />
-
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-                <a asp-action="ChangePassword" class="btn btn-warning">Cambiar clave</a>
-            </div>
-        </form>
+    <div class="container mt-4 text-center" style="font-style:italic, oblique; font-family:Harabara;">
+        <a asp-action="Index" asp-controller="Home">
+            <img class="img-responsive mt-4" src="~/images/Fundacion/FDPATransparente.png" alt="Editar perfil"
+                 width="150" height="150" />
+        </a>
+        <h2 class="text-purple text-uppercase">Edita tu perfil</h2>
+        <h4 class="text-primary">Usuario: </h4> <h4>@User.Identity.Name</h4>
+        <hr />
     </div>
-    <div class="col-md-4">
-        @if (!string.IsNullOrEmpty(Model.PicturePath))
-        {
-            <img src="@Url.Content(Model.PicturePath)" alt="Image" style="width:300px;height:300px;max-width: 100%; height: auto;" />
-        }
+
+
+<div class="container mt-2" style="font-style:italic, oblique; font-family:Harabara;">
+    <div class="row">
+        <div class="col-md-4 offset-md-3">
+            <form asp-action="ChangeUser" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="PicturePath" />
+
+                <partial name="_User" />
+
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                    <a asp-action="ChangePassword" class="btn btn-warning">Cambiar clave</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4 offset-md-auto">
+            @if (!string.IsNullOrEmpty(Model.PicturePath))
+            {
+                <img src="@Url.Content(Model.PicturePath)" alt="Image" class="img-responsive" width="300" height="300"/>
+            }
+        </div>
     </div>
 </div>
 

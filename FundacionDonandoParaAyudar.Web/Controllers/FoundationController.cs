@@ -24,23 +24,22 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             _userHelper = userHelper;
         }
 
+        public async Task<IActionResult> MyComments()
+        {
+            string name = User.Identity.Name;
+            UserEntity user = await _userHelper.GetUserByEmailAsync(name);
+            return View(await _context.Comments
+                    .Include(c => c.User)
+                    .Where(c => c.User.Id == user.Id)
+                    .ToListAsync());
+        }
+
         // GET: Foundation
         public async Task<IActionResult> Index()
         {
-            if (!User.Identity.IsAuthenticated)
-            {
-                return View(await _context.Comments
+            return View(await _context.Comments
                     .Include(c => c.User)
                     .ToListAsync());
-            }
-
-            UserEntity user = await _userHelper.GetUserByEmailAsync(User.Identity.Name);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return View(await _context.Comments
-                .Where(c => c.User.Id == user.Id).ToListAsync());
         }
 
         // GET: Foundation/Details/5
@@ -52,6 +51,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             }
 
             var foundationEntity = await _context.Comments
+                .Include(c => c.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (foundationEntity == null)
             {
@@ -64,6 +64,10 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
         // GET: Foundation/Create
         public IActionResult Create()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 
@@ -110,28 +114,15 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(foundationEntity);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!FoundationEntityExists(foundationEntity.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                _context.Update(foundationEntity);
+                await _context.SaveChangesAsync();
+                
                 return RedirectToAction(nameof(Index));
             }
             return View(foundationEntity);
         }
 
-        // GET: Foundation/Delete/5
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -139,30 +130,19 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
                 return NotFound();
             }
 
-            var foundationEntity = await _context.Comments
+            var model = await _context.Comments
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (foundationEntity == null)
+            if (model == null)
             {
                 return NotFound();
             }
 
-            return View(foundationEntity);
-        }
-
-        // POST: Foundation/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var foundationEntity = await _context.Comments.FindAsync(id);
-            _context.Comments.Remove(foundationEntity);
+            _context.Comments.Remove(model);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FoundationEntityExists(int id)
-        {
-            return _context.Comments.Any(e => e.Id == id);
-        }
+
+        // GET: Foundation/Delete/5
     }
 }

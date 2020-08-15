@@ -64,11 +64,21 @@ namespace FundacionDonandoParaAyudar.Web
                 {
                     cfg.TokenValidationParameters = new TokenValidationParameters
                     {
-                      ValidIssuer = Configuration["Tokens:Issuer"],
-                      ValidAudience = Configuration["Tokens:Audience"],
-                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
+                        ValidIssuer = Configuration["Tokens:Issuer"],
+                        ValidAudience = Configuration["Tokens:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
                     };
-            });
+                })
+                .AddGoogle(options =>
+                {
+                    options.ClientId = Configuration["AuthenticationGoogle:ClientId"];
+                    options.ClientSecret = Configuration["AuthenticationGoogle:ClientSecret"];
+                })
+                .AddFacebook(facebook=>
+                {
+                    facebook.AppId = Configuration["AuthenticationFacebook:AppId"];
+                    facebook.AppSecret = Configuration["AuthenticationFacebook:AppSecret"];
+                });                
 
 
             services.AddDbContext<DataContext>(cfg =>
@@ -81,6 +91,7 @@ namespace FundacionDonandoParaAyudar.Web
             services.AddScoped<IMailHelper, MailHelper>();
             services.AddScoped<ICombosHelper, CombosHelper>();
             services.AddScoped<IImageHelper, ImageHelper>();
+            services.AddScoped<ISelectedHelper, SelectedHelper>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

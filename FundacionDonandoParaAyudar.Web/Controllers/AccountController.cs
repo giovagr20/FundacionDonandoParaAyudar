@@ -35,7 +35,6 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             _combosHelper = combosHelper;
             _mailHelper = mailHelper;
         }
-
         public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
@@ -61,7 +60,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-            ModelState.AddModelError(string.Empty, "Error al ingresar, volver a intentarlo");
+            ModelState.AddModelError(string.Empty, "Usuario y/o clave incorrecto");
             return View(model);
         }
 
@@ -78,10 +77,12 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
 
         public IActionResult Register()
         {
+
             AddUserViewModel model = new AddUserViewModel
             {
                 UserTypes = _combosHelper.GetComboRoles()
             };
+
 
             return View(model);
         }
@@ -122,7 +123,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
 
                 if (response.IsSuccess)
                 {
-                    ViewBag.Message = "Las instrucciones han sido enviadas a tu correo electrónico.";
+                    ViewBag.Message = "Se han enviado las instrucciones al correo.";
                     return View(model);
                 }
 
@@ -315,7 +316,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
                     "Account",
                     new { token = myToken }, protocol: HttpContext.Request.Scheme);
                 _mailHelper.SendMail(model.Email, "Clave cambiada", $"<h1>Cambiar clave</h1>" +
-                    $"Para cambiar la contrasela presiona click en este enlace:</br></br>" +
+                    $"Para cambiar la contraseña presiona click en este enlace:</br></br>" +
                     $"<a href = \"{link}\">Cambiar clave</a>");
                 ViewBag.Message = "Las instrucciones para recuperar tu clave ha sido enviado al correo.";
                 return View();

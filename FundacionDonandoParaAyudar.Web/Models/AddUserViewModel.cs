@@ -10,8 +10,8 @@ namespace FundacionDonandoParaAyudar.Web.Models
     public class AddUserViewModel : EditUserViewModel
     {
         [Display(Name = "Email")]
-        [Required(ErrorMessage = "The field {0} is mandatory.")]
-        [MaxLength(100, ErrorMessage = "The {0} field can not have more than {1} characters.")]
+        [Required(ErrorMessage = "El campo {0} es mandatorio.")]
+        [MaxLength(100, ErrorMessage = "El {0} campo no puede tener más de {1} caracteres.")]
         [EmailAddress]
         public string Username { get; set; }
 

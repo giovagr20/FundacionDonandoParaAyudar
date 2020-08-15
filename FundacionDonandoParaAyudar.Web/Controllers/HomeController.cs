@@ -4,29 +4,99 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using FundacionDonandoParaAyudar.Web.Models;
+using FundacionDonandoParaAyudar.Web.Data;
+using FundacionDonandoParaAyudar.Web.Data.Entities;
+using FundacionDonandoParaAyudar.Web.Helpers;
 
 namespace FundacionDonandoParaAyudar.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly DataContext _context;
+        private readonly IMailHelper _mailHelper;
+        private readonly IUserHelper _userHelper;
+        private ReceiveDataModel _dataModel;
+
+        public HomeController(
+            DataContext context,
+            IMailHelper mailHelper,
+            IUserHelper userHelper)
         {
-            return View();
+            _context = context;
+            _mailHelper = mailHelper;
+            _userHelper = userHelper;
+        }
+
+        public async Task<IActionResult> _UploadImage()
+        {
+            return PartialView(await _context.Comments
+                  .Include(c => c.Comments)
+                  .ToListAsync());
+        }
+
+        public async Task<IActionResult> _PartialComments()
+        {
+            return PartialView(await _context.Comments
+                  .Include(c => c.Comments)
+                  .Take(3)
+                  .ToListAsync());
+        }
+
+
+        public async Task<IActionResult> Index()
+        {
+            /*var list = await (from c in _context.Comments
+                              join u in _context.
+                              from u 
+                        orderby c.User.FullName
+                        select c).Take(5).ToListAsync();*/
+            return View(await _context.Comments
+                   .Include(c => c.User)
+                   .Take(4)
+                   .ToListAsync());
         }
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
-
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Contact(SendMessageEntity model)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = _mailHelper.SendMail("giovagr20@yopmail.com",
+                    $"{model.FirstName + " " + model.LastName} te ha enviado un mensaje desde la pagina web", 
+                    $"<h1> Te han escrito el siguiente mensaje: </h1>" +
+                    $"<br/>" +
+                    $"<p>{model.Message}</p>");
+
+                if (response.IsSuccess)
+                {
+                    ViewBag.Message = "Ha sido enviado el mensaje";
+                    _context.Add(model);
+                    await _context.SaveChangesAsync();
+                    UserEntity user = await _userHelper.GetUserAsync(model.Email);
+                    if (user == null)
+                    {
+                        _dataModel = new ReceiveDataModel(model.Email, model.FirstName, model.LastName);
+                        
+                        ViewBag.Message = "Si quieres conocer más acerca de la fundación, te invitamos a registrarte";
+                        return RedirectToAction("Register", "Account");
+                    }
+                    return RedirectToAction(nameof(Contact));
+                }
+            }
+            return View(model);
         }
 
         public IActionResult Privacy()
@@ -45,6 +115,5 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
         {
             return View();
         }
-
     }
 }
