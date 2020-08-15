@@ -9,7 +9,7 @@
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
                   integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
                   crossorigin="anonymous">
-            <link rel="shortcut icon" type="image/jpg" href="~/images/Logo.jpg" />
+            <link rel="shortcut icon" type="image/jpg" href="~/images/Fundacion/FDPATransparente.png" />
             <link rel="stylesheet" href="~/css/site.css" />
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
                   integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
@@ -19,7 +19,7 @@
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
                   integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
                   crossorigin="anonymous">
-            <link rel="shortcut icon" type="image/jpg" href="~/images/Logo.jpg" />
+            <link rel="shortcut icon" type="image/jpg" href="~/images/Fundacion/FDPATransparente.png" />
             <link rel="stylesheet" href="~/css/site.css" />
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
                   integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
@@ -27,13 +27,12 @@
         </environment>
     </head>
     <body>
-
         <div class="fixed-top bg-color">
             <div class="container bg-color">
                 <div class="collapse bg-color" id="navbarToggleExternalContent">
                     <div class="bg-color p-4">
-                        <img src="~/images/Fundacion/FDPATransparente.png" alt="Logo" 
-                             width="70" height="70"/>
+                        <img src="~/images/Fundacion/FDPATransparente.png" alt="Logo"
+                             width="70" height="70" />
                         <h3 class="text-uppercase text-light style-text-data">&hearts; - Nuestro Menu - &hearts; </h3>
                         <a asp-area="" asp-controller="Home" asp-action="Index"
                            class="nav-link text-uppercase text-light">
@@ -66,7 +65,6 @@
                                        class="nav-link text-uppercase text-light style-text-data">
                                         <i class="fas fa-user-tag"></i>
                                         <small class="style-text-data">Edita tu perfil</small><br />
-
                                         @User.Identity.Name
                                     </a>
                                 </li>
@@ -82,7 +80,7 @@
                                 <li class="nav-item">
                                     <a asp-area="" asp-controller="Account" asp-action="Login"
                                        class="nav-link text-uppercase text-light style-text-data">
-                                        <i class="fas fa-user"></i> Ingresar
+                                        <i class="fas fa-user"></i> Iniciar sesión
                                     </a>
                                 </li>
                             }
@@ -98,155 +96,204 @@
                         <span class="navbar-toggler-icon" />
                     </button>
                     <a asp-area="" asp-controller="Home" asp-action="Index">
-                        <img src="~/images/Fundacion/FDPATransparente.png" alt="Logo_FDPA"
-                             style="width: 60px; height:60px; max-width:inherit;" />
                         <span class="navbar-text style-text-data">
                             F <i class="fas fa-heartbeat"></i>
                             D <i class="fas fa-heartbeat"></i>
                             P <i class="fas fa-heartbeat"></i>
                             A
                         </span>
+                        <img src="~/images/Fundacion/FDPATransparente.png" alt="Logo_FDPA"
+                             style="width: 60px; height:60px; max-width:inherit;" />
                     </a>
                 </nav>
             </div>
         </div>
 
-        <ul class="list-group list-group-flush the-fly">
-            <li class="list-group-item list-group-item-action ">
-                <a href="https://wa.me/573205046954?text=Hola%20me%20interesa%20saber%20más%20sobre%20la%20fundacion%20.." target="_blank"
+        <ul class="nav flex-column active the-fly">
+            <li class="nav-item">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal"
+                        data-target="#myModal" data-placement="right" title="Clickea para conocer ">
+                    <img src="~/images/donate.png" alt="Donar"
+                         class="img-responsive"
+                         style="width:50%; height:50%; max-width:inherit;" />
+                </button>
+            </li>
+            <li class="nav-item">
+                <a href="https://wa.me/573205046954?text=Hola%20me%20interesa%20saber%20más%20sobre%20la%20fundacion%20.."
+                   target="_blank" class="btn btn-link btn-sm"
                    data-toggle="tooltip" data-placement="top" title="Escríbenos">
                     <img src="~/images/whatsapp.png" alt="Whatsapp"
+                         class="img-responsive"
                          style="width:50%; height:50%; max-width:inherit;" />
                 </a>
             </li>
-            <li class="list-group-item list-group-item-action ">
+            <li class="nav-item">
                 <a href="https://www.instagram.com/fundacion_donando_para_ayudar/?hl=es-la" target="_blank"
+                   class="btn btn-link btn-sm"
                    data-toggle="tooltip" data-placement="top" title="Síguenos">
                     <img src="~/images/instagram.png" alt="Whatsapp"
+                         class="img-responsive"
                          style="width:50%; height:50%; max-width:inherit;" />
                 </a>
             </li>
-            <li class="list-group-item list-group-item-action ">
+            <li class="nav-item">
                 <a href="https://www.facebook.com/fundaciondonandoparaayudar" target="_blank"
+                   class="btn btn-link btn-sm"
                    data-toggle="tooltip" data-placement="top" title="Síguenos">
                     <img src="~/images/facebook.png" alt="Whatsapp"
+                         class="img-responsive"
                          style="width:50%; height:50%; max-width:inherit;" />
                 </a>
             </li>
-            <li class="list-group-item list-group-item-action ">
+            <li class="nav-item">
                 <a href="https://www.youtube.com/channel/UCWrQqtIvx2Orp6QR3bJYbkw?view_as=subscriber" target="_blank"
+                   class="btn btn-link btn-sm"
                    data-toggle="tooltip" data-placement="top" title="Síguenos">
                     <img src="~/images/youtube.png" alt="Whatsapp"
+                         class="img-responsive"
                          style="width:50%; height:50%; max-width:inherit;" />
                 </a>
             </li>
         </ul>
 
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-color">
+                        <div class="container text-center">
+                            <h2 class="modal-title text-light text-center">
+                                Apoyanos donando!
+                            </h2>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <h4 class="text-center">
+                            <b>Ayuda a nuestra fundación</b>
+                        </h4>
+                        <div class="container text-center">
+                            <img src="~/images/logo-bancolombia.png" class="img-responsive" alt="Bancolombia"
+                                 style="width:40%; height:20%; max-width:inherit;" />
+                        </div>
+                        <p class="text-justify">
+                            Dona a nuestra cuenta de ahorros
+                            <b> Bancolombia #01234567891 </b>
+                        </p>
+                    </div>
+                    <div class="modal-footer bg-footer">
+                        <small class="text-light  ">
+                            &copy;<b>Fundacion Donando Para Ayudar</b><br />
+                            <small class="text-light text-left">&hearts; Colombia, Antioquia, Medellín </small>
+                        </small>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <partial name="_CookieConsentPartial" />
 
-            @RenderBody()
-            <hr />
-            <div class="section footer_copyright">
-                <div class="container bg-footer">
+        @RenderBody()
+        <hr />
+        <div class="section footer_copyright">
+            <div class="container bg-footer">
+                <div class="row">
+                    <div class="col-md-4 text-left">
+                        <label class="text-light "><b>Siguenos en nuestras redes sociales: </b></label>
+                        <ol>
+                            <li>
+                                <a class="img-responsive text-light left"
+                                   href="https://wa.me/573205046954?text=Hola%20me%20interesa%20saber%20más%20sobre%20la%20fundacion%20.."
+                                   target="_blank">
+                                    <i class="fab fa-whatsapp"></i>
+                                    +57 (320) 5046954
+                                </a>
+                            </li>
+                            <li>
+                                <a class="img-responsive text-light left"
+                                   href="https://www.youtube.com/channel/UCWrQqtIvx2Orp6QR3bJYbkw?view_as=subscriber"
+                                   target="_blank">
+                                    <i class="fab fa-youtube"></i>
+                                    Suscribete a nuestro canal
+                                </a>
+                            </li>
+                            <li>
+                                <a class="img-responsive text-light left"
+                                   href="https://www.facebook.com/fundaciondonandoparaayudar"
+                                   target="_blank">
+                                    <i class="fab fa-facebook"></i>
+                                    Síguenos
+                                </a>
+                            </li>
+                            <li>
+                                <a class="img-responsive text-light left"
+                                   href="https://www.instagram.com/fundacion_donando_para_ayudar/?hl=es-la"
+                                   target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                    Síguenos
+                                </a>
+                            </li>
+                        </ol>
+                        <a asp-controller="Home" asp-action="Privacy">
+                            Políticas de privacidad
+                        </a>
+                        <label class="text-light">|</label>
+                        <a asp-controller="Home" asp-action="Contact">
+                            Contáctanos
+                        </a>
+                    </div>
+                    <div class="col-md-4 mr-auto">
+                        <label class="text-light "><b>Escríbenos a: </b></label>
+                        <br />
+                        <label class="text-light">
+                            <i class="fab fa-mailchimp"></i>
+                            <b>Soporte:</b>
+                        </label>
+                        <a href="mailto:donandoparaayudar@gmail.com">
+                            donandoparaayudar@gmail.com
+                        </a>
+                        <div class="container">
+                            <hr />
+                            <p class="text-light">
+                                <i class="fas fa-home">
+                                </i> Aranjuez, Medellín, Colombia
+                            </p>
+                            <p class="text-light">
+                                <i class="fas fa-mobile-alt">
+                                </i> Colombia +57 (320) 5046954
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
                     <div class="row">
-                        <div class="col-md-4 text-left">
-                            <label class="text-light "><b>Siguenos en nuestras redes sociales: </b></label>
-                            <ol>
-                                <li>
-                                    <a class="img-responsive text-light left"
-                                       href="https://wa.me/573205046954?text=Hola%20me%20interesa%20saber%20más%20sobre%20la%20fundacion%20.."
-                                       target="_blank">
-                                        <i class="fab fa-whatsapp"></i>
-                                        +57 (320) 5046954
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="img-responsive text-light left"
-                                       href="https://www.youtube.com/channel/UCWrQqtIvx2Orp6QR3bJYbkw?view_as=subscriber"
-                                       target="_blank">
-                                        <i class="fab fa-youtube"></i>
-                                        Suscribete a nuestro canal
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="img-responsive text-light left"
-                                       href="https://www.facebook.com/fundaciondonandoparaayudar"
-                                       target="_blank">
-                                        <i class="fab fa-facebook"></i>
-                                        Síguenos
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="img-responsive text-light left"
-                                       href="https://www.instagram.com/fundacion_donando_para_ayudar/?hl=es-la"
-                                       target="_blank">
-                                        <i class="fab fa-instagram"></i>
-                                        Síguenos
-                                    </a>
-                                </li>
-                            </ol>
-                            <a asp-controller="Home" asp-action="Privacy">
-                                Políticas de privacidad
-                            </a>
-                            <label class="text-light">|</label>
-                            <a asp-controller="Home" asp-action="Contact">
-                                Contactanos
-                            </a>
+                        <div class="col-md-4 ml-auto">
+                            <footer class="bottom">
+                                <p class="text-light text-left">
+                                    &copy;<b>Todos los derechos reservados. Fundacion Donando Para Ayudar - 2020</b><br />
+                                    <small class="text-light text-right">&hearts; Colombia, Antioquia, Medellín </small>
+                                </p>
+                            </footer>
                         </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
                         <div class="col-md-4 mr-auto">
-                            <label class="text-light "><b>Escríbenos a: </b></label>
-                            <br />
-                            <label class="text-light">
-                                <i class="fab fa-mailchimp"></i>
-                                <b>Soporte:</b>
-                            </label>
-                            <a href="mailto:donandoparaayudar@gmail.com">
-                                donandoparaayudar@gmail.com
-                            </a>
-                            <div class="container">
-                                <hr />
-                                <p class="text-light">
-                                    <i class="fas fa-home">
-                                    </i> Aranjuez, Medellín, Colombia
-                                </p>
-                                <p class="text-light">
-                                    <i class="fas fa-mobile-alt">
-                                        </i> Colombia +57 (320) 5046954
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 ml-auto">
-                                <footer class="bottom">
-                                    <p class="text-light">
-                                        &copy;<b>Todos los derechos reservados. Fundacion Donando Para Ayudar - 2020</b><br />
-                                        <small class="text-light text-right">&hearts; Colombia, Antioquia, Medellín </small>
-                                    </p>
-                                </footer>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 mr-auto">
-                                <small class="text-right text-light small">
-                                    <a href="https://github.com/giovagr20" target="_blank">
-                                        <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="http://giovaapp.herokuapp.com/" target="_blank">
-                                        <i class="fas fa-globe"></i>
-                                    </a>
-                                    <b>Creado por: </b>Giovanni Gómez Restrepo
-                                </small>
-                            </div>
+                            <small class="text-right text-light small">
+                                <a href="https://github.com/giovagr20" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="http://giovaapp.herokuapp.com/es" target="_blank">
+                                    <i class="fas fa-globe"></i>
+                                </a>
+                                <b>Creado por: </b>Giovanni Gómez Restrepo
+                            </small>
                         </div>
                     </div>
                 </div>
             </div>
-
+        </div>
         <environment include="Development">
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
                     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -258,7 +305,11 @@
                     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
                     crossorigin="anonymous"></script>
             <script src="~/js/site.js" asp-append-version="true"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         </environment>
+
         <environment exclude="Development">
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
                     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -269,6 +320,9 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
                     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
                     crossorigin="anonymous"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
             <script src="~/js/site.min.js" asp-append-version="true"></script>
         </environment>
 

@@ -51,7 +51,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             }
 
             var foundationEntity = await _context.Comments
-                .Include(c=>c.User)
+                .Include(c => c.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (foundationEntity == null)
             {
@@ -114,28 +114,15 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(foundationEntity);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!FoundationEntityExists(foundationEntity.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                _context.Update(foundationEntity);
+                await _context.SaveChangesAsync();
+                
                 return RedirectToAction(nameof(Index));
             }
             return View(foundationEntity);
         }
 
-        // GET: Foundation/Delete/5
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -143,30 +130,19 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
                 return NotFound();
             }
 
-            var foundationEntity = await _context.Comments
+            var model = await _context.Comments
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (foundationEntity == null)
+            if (model == null)
             {
                 return NotFound();
             }
 
-            return View(foundationEntity);
-        }
-
-        // POST: Foundation/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var foundationEntity = await _context.Comments.FindAsync(id);
-            _context.Comments.Remove(foundationEntity);
+            _context.Comments.Remove(model);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FoundationEntityExists(int id)
-        {
-            return _context.Comments.Any(e => e.Id == id);
-        }
+
+        // GET: Foundation/Delete/5
     }
 }

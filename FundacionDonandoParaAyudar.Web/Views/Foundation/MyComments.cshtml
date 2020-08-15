@@ -4,7 +4,7 @@
 <div class="container text-center mt-4" style="font-style:italic, oblique; font-family:Harabara;">
     <a asp-action="Index" asp-controller="Foundation">
         <img src="~/images/Fundacion/FDPATransparente.png" alt="Logo" width="150" height="150"
-             class="img-responsive mt-4"/>
+             class="img-responsive mt-4" />
     </a>
     <h2 class="text-uppercase text-purple">Mis comentarios</h2>
 </div>
@@ -13,6 +13,10 @@
     <h2 class="text-uppercase" style="font-style:italic, oblique; font-family:Harabara;">
         Mira aquí los comentarios!
     </h2>
+    <a asp-action="Create"
+       class="text-uppercase" style="font-style:italic, oblique; font-family:Harabara;">
+        Crea un nuevo comentario
+    </a>
     <div class="table-responsive">
         <table class="table table-hover table-sm">
             <thead class="thead-dark" style="font-style:italic, oblique; font-family:Harabara;">
@@ -48,6 +52,11 @@
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
                                 <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalles</a>
+                                <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal"
+                                        data-target="#deleteDialog">
+                                    Borrar
+                                </button>
+
                             </td>
                         }
                     </tr>
@@ -56,7 +65,35 @@
         </table>
     </div>
 </div>
+
+<partial name="_DeleteDialog" />
+
 <div class="container mt-2" style="font-style:italic, oblique; font-family:Harabara;">
     <a asp-action="Index" class="btn btn-link"><h5>Regresar</h5></a>
 </div>
 
+
+@section Scripts{
+
+
+
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#MyTable').DataTable();
+
+            // Delete item
+            var item_to_delete;
+
+            $('.deleteItem').click((e) => {
+                item_to_delete = e.currentTarget.dataset.id;
+            });
+
+            $("#btnYesDelete").click(function () {
+                window.location.href = '/Foundation/Delete/' + item_to_delete;
+            });
+        });
+    </script>
+
+}

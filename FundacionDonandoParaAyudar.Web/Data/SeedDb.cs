@@ -30,12 +30,12 @@ namespace FundacionDonandoParaAyudar.Web.Data
                 "300 634 2747",
                 "Calle 1 # 1-1",
                 UserType.Admin);
-            var admin2 = await CheckUserAsync("2020",
-                "Hernan Yesid",
-                "Gomez Osorio",
-                "yesid@yopmail.com",
-                "300 200 1111",
-                "Calle 2 # 2-2",
+            var admin2 = await CheckUserAsync("901314691",
+                "Fundacion",
+                "Donando Para Ayudar",
+                "donandoparaayudar@gmail.com",
+                "320 504 6954",
+                "Aranjuez, Medellín, Antioquia",
                 UserType.Admin);
         }
 
