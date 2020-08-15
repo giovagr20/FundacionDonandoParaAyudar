@@ -1,0 +1,66 @@
+﻿@model FundacionDonandoParaAyudar.Web.Models.EditUserViewModel
+
+    <div class="form-group">
+        <label asp-for="Document" class="control-label">Documento</label>
+        <div class="input-group mb-3">
+            <select class="custom-select-xs" id="inputGroupSelect01">
+                <option selected>Tipo</option>
+                <option value="1">C.C</option>
+                <option value="2">T.I</option>
+                <option value="3">C.E</option>
+            </select>
+            <input asp-for="Document" class="form-control" placeholder="Documento" />
+        </div>
+        <span asp-validation-for="Document" class="text-danger"></span>
+    </div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <div class="form-group">
+            <label asp-for="FirstName" class="control-label">Nombre</label>
+            <div class="input-group mb-3">
+                <input asp-for="FirstName" class="form-control" />
+            </div>
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="form-group">
+            <label asp-for="LastName" class="control-label">Apellido</label>
+            <div class="input-group mb-3">
+                <input asp-for="LastName" class="form-control" />
+            </div>
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <div class="form-group">
+            <label asp-for="Address" class="control-label">Direccion</label>
+            <div class="input-group mb-3">
+                <input asp-for="Address" class="form-control" placeholder="Cra 00 # 00-00" />
+            </div>
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="form-group">
+            <label asp-for="PhoneNumber" class="control-label">Telefono</label>
+            <div class="input-group mb-3">
+                <input asp-for="PhoneNumber" class="form-control" placeholder="(+57) 300 200 1000" />
+            </div>
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+<div class="mb-3">
+    <div class="form-group">
+        <label asp-for="PictureFile" class="control-label">Imagen</label>
+        <div class="input-group mb-3">
+            <input asp-for="PictureFile" class="form-control" type="file" />
+        </div>
+        <span asp-validation-for="PictureFile" class="text-danger"></span>
+    </div>
+</div>

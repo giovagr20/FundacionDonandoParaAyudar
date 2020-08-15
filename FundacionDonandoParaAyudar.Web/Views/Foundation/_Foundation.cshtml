@@ -1,0 +1,19 @@
+﻿@model FundacionDonandoParaAyudar.Web.Data.Entities.FoundationEntity
+
+<div>
+    <label class="control-label">
+        <strong>
+            Hola,
+            <br />
+            @User.Identity.Name
+        </strong>
+    </label>
+</div>
+<div class="form-group">
+    <div class="input-group-append">
+        <span class="input-group-text" id="basic-addon2">Tu comentario: </span>
+        <input asp-for="Comments" type="text" class="form-control" placeholder="Añade tu comentario"
+               aria-describedby="basic-addon2" />
+        <span asp-validation-for="Comments" class="text-danger"></span>
+    </div>
+</div>

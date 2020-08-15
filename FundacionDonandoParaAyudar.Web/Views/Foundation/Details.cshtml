@@ -1,0 +1,65 @@
+﻿@model FundacionDonandoParaAyudar.Web.Data.Entities.FoundationEntity
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container mt-4 text-center">
+    <a asp-controller="Foundation" asp-action="Index">
+        <img src="~/images/Fundacion/FDPATransparente.png" alt="Detalles" class="img-responsive mt-4"
+             width="150" height="150" />
+    </a>
+    <h3 class="text-uppercase text-purple" style="font-style:italic, oblique; font-family:Harabara;">
+        Mira el detalle de tu comentario
+    </h3>
+</div>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-4 ml-auto">
+            <dl class="dl-horizontal" style="font-style:italic, oblique; font-family:Harabara;">
+                <dt>
+                    Usuario
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.User.UserName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.User.FullName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.User.FullName)
+                </dd>
+                <dt>
+                    Teléfono
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.User.PhoneNumber)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Comments)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Comments)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-4 mr-auto" style="font-style:italic, oblique; font-family:Harabara;">
+            <dl class="dl-horizontal">
+                <dt>Tu Avatar
+                </dt>
+                <dd>
+                    <img src="@Url.Content(Model.User.PicturePath)" alt="Detalle Avatar" class="img-responsive"
+                         width="200" height="200" />
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col ml-auto text-center">
+            <a asp-action="Edit" asp-route-id="@Model.Id" 
+               style="font-style:italic, oblique; font-family:Harabara;">Editar</a> |
+            <a asp-action="Index" style="font-style:italic, oblique; font-family:Harabara;">Regresar</a>
+        </div>
+    </div>
+</div>

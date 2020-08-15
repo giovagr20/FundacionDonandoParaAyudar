@@ -1,0 +1,32 @@
+﻿@model FundacionDonandoParaAyudar.Web.Data.Entities.FoundationEntity
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container text-center mt-4" style="font-style:italic, oblique; font-family:Harabara;">
+    <img src="~/images/Fundacion/FDPATransparente.png" alt="Crear Comentario"
+         class="img-responsive mt-4" width="150" height="150"/>
+    <h5 class="">Quieres añadir un comentario?</h5>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4 offset-md-4" style="font-style:italic, oblique; font-family:Harabara;">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <partial name="_Foundation" />
+
+            <div class="form-group" style="font-style:italic, oblique; font-family:Harabara;">
+                <input type="submit" value="Añade tu comentario" class="btn btn-primary" /> <br />
+                <a asp-action="Index" class="btn btn-success">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
