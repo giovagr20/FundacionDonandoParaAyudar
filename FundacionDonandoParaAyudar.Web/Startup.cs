@@ -73,6 +73,11 @@ namespace FundacionDonandoParaAyudar.Web
                 {
                     options.ClientId = Configuration["AuthenticationGoogle:ClientId"];
                     options.ClientSecret = Configuration["AuthenticationGoogle:ClientSecret"];
+                })
+                .AddFacebook(facebook=>
+                {
+                    facebook.AppId = Configuration["AuthenticationFacebook:AppId"];
+                    facebook.AppSecret = Configuration["AuthenticationFacebook:AppSecret"];
                 });                
 
 
