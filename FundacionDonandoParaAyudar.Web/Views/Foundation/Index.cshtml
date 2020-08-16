@@ -29,8 +29,8 @@
     <div class="table-responsive">
         @if (!User.IsInRole("Admin"))
         {
-            <a asp-action="Create" class="btn btn-primary mb-2"
-               style="font-style:italic, oblique; font-family:Harabara;">Crear comentario</a>
+        <a asp-action="Create" class="btn btn-primary mb-2"
+           style="font-style:italic, oblique; font-family:Harabara;">Crear comentario</a>
         }
         <table class="table table-hover table-sm">
             <thead class="thead-dark" style="font-style:italic, oblique; font-family:Harabara;">
@@ -39,7 +39,6 @@
                         Avatar
                     </th>
                     <th>
-                        v
                         @Html.DisplayNameFor(model => model.User.FullName)
                     </th>
                     <th>
@@ -51,37 +50,40 @@
             <tbody style="font-style:italic, oblique; font-family:Harabara;">
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            <img src="@Url.Content(item.User.PicturePath)"
-                                 alt="Image" style="width:50px;height:50px;max-width: 100%; height: auto;" />
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.User.FullName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Comments)
-                        </td>
-                        @if (User.Identity.IsAuthenticated)
+                <tr>
+                    <td>
+                        <img src="@Url.Content(item.User.PicturePath)"
+                             alt="Image" style="width:50px;height:50px;max-width: 100%; height: auto;" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comments)
+                    </td>
+                    @if (User.Identity.IsAuthenticated)
                         {
                     <td>
                         <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-link">Ver Detalles</a>
                         @if (User.IsInRole("Admin"))
                         {
-                            <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal"
-                                    data-target="#deleteDialog">
-                                Borrar
-                            </button>
+                        <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal"
+                                data-target="#deleteDialog">
+                            Borrar
+                        </button>
                         }
                     </td>
                         }
-                    </tr>
+                </tr>
                 }
             </tbody>
         </table>
     </div>
+    @if (User.Identity.IsAuthenticated)
+    {
     <a asp-action="MyComments" class="btn btn-link"
        style="font-style:italic, oblique; font-family:Harabara;">Ver todos mis comentarios </a>
+    }
 </div>
 
 <partial name="_DeleteDialog" />
