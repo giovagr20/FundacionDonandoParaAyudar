@@ -1,0 +1,6 @@
+﻿@model IEnumerable<String>
+
+@foreach(var item in Model)
+{
+    <a class="btn btn-link login-button" asp-action="SignIn" asp-route-provider="@item">@item</a>
+}

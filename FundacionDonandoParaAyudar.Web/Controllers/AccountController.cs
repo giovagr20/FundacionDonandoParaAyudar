@@ -21,19 +21,22 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
         private readonly IImageHelper _imageHelper;
         private readonly ICombosHelper _combosHelper;
         private readonly IMailHelper _mailHelper;
+        private readonly IFacebookHelper _facebookHelper;
 
         public AccountController(
             IUserHelper userHelper,
             IConfiguration configuration,
             IImageHelper imageHelper,
             ICombosHelper combosHelper,
-            IMailHelper mailHelper)
+            IMailHelper mailHelper,
+            IFacebookHelper facebookHelper)
         {
             _userHelper = userHelper;
             _configuration = configuration;
             _imageHelper = imageHelper;
             _combosHelper = combosHelper;
             _mailHelper = mailHelper;
+            _facebookHelper = facebookHelper;
         }
         public IActionResult Login()
         {
@@ -352,5 +355,53 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             return View(model);
         }
 
+
+        public async Task<IActionResult> SignInFacebook(string accessToken)
+        {
+            FacebookUserInfoResult infoResult =await _facebookHelper.GetUserInfoAsync(accessToken);
+
+            UserEntity user = await _userHelper.GetUserAsync(infoResult.Email);
+
+            if(user == null)
+            {
+                AddUserViewModel userViewModel = new AddUserViewModel
+                {
+                    Document = accessToken,
+                    FirstName = infoResult.FirstName,
+                    LastName = infoResult.LastName,
+                    UserTypes = _combosHelper.GetComboRoles(),
+                    Password = "resultFacebook",
+                    PasswordConfirm = "resultFacebook"
+                };
+
+                string path = string.Empty;
+
+                UserEntity userEntity = await _userHelper.AddUserAsync(userViewModel, path);
+
+                if (userEntity == null)
+                {
+                    ModelState.AddModelError(string.Empty, "Este correo ya se encuentra registrado.");
+                    userViewModel.UserTypes = _combosHelper.GetComboRoles();
+                    return RedirectToAction("Login", "Account");
+                }
+
+                LoginViewModel loginViewModel = new LoginViewModel
+                {
+                    Password = userViewModel.Password,
+                    RememberMe = false,
+                    Username = userViewModel.Username
+                };
+
+                Microsoft.AspNetCore.Identity.SignInResult result2 = await _userHelper.LoginAsync(loginViewModel);
+
+                if (result2.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+            ViewBag.Message = "Error al ingresar";
+            return RedirectToAction("Register", "Account");
+        }
     }
 }

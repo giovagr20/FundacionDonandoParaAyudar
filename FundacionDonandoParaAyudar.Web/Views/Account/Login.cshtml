@@ -42,7 +42,7 @@
                     <a asp-action="Register" class="btn btn-primary">Registrarse</a>
                     <a asp-action="RecoverPassword" class="btn btn-link">Olvidaste tu clave?</a>
                     <div class="row">
-                        <div class="col-md-6 offset-md-2">
+                        <div class="col-md-6 offset-md-3">
                             <!--                           <div class="input-group-prepend mb-2">
                                    <span class="input-group-text" id="basic-addon4">
                                        <img src="~/images/gmail.png" class="img-responsive"
@@ -51,10 +51,14 @@
                                               aria-describedby="basic-addon4" />
                                    </span>
                                </div> -->
-                            <div class="input-group-prepend">
+                            <!--<div class="input-group-prepend text-center">
+                               
+                            </div> -->
+                            <div class="input-group-prepend text-center">
                                 <span class="input-group-text" id="basic-addon5">
                                     <fb:login-button scope="public_profile,email"
-                                                     onlogin="checkLoginState();">
+                                                     onlogin="checkLoginState();"
+                                                     id="intoLogin">
                                         Iniciar sesión con Facebook
                                     </fb:login-button>
                                 </span>
@@ -91,10 +95,14 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
+        var accessTokenResponse;
         function checkLoginState() {
             FB.getLoginStatus(function (response) {
-                $('#authStatus').html("<code>" + JSON.stringify(response, null, 2) + "</code>");
-            });
+                accessTokenResponse = response.authResponse.accessToken;   
+                window.location.href = '/Account/SignInFacebook/' + String(accessTokenResponse);
+            });           
         }
+
+
     </script>
 }

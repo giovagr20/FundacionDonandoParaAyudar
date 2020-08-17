@@ -89,10 +89,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
                     await _context.SaveChangesAsync();
                     UserEntity user = await _userHelper.GetUserAsync(model.Email);
                     if (user == null)
-                    {
-                        _dataModel = new ReceiveDataModel(model.Email, model.FirstName, model.LastName);
-                        
-                        ViewBag.Message = "Si quieres conocer más acerca de la fundación, te invitamos a registrarte";
+                    {                        
                         return RedirectToAction("Register", "Account");
                     }
                     return RedirectToAction(nameof(Contact));
