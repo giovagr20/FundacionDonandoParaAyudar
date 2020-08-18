@@ -3,11 +3,12 @@
 @{
     ViewData["Title"] = "Login";
 }
-<div class="container" style="font-style:italic, oblique; font-family:Harabara;">
+
+<div class="container mt-4" style="font-style:italic, oblique; font-family:Harabara;">
     <div class="row text-center mt-5">
         <div class="col-md-4 offset-md-4">
             <form method="post">
-                <img class="mb-4" src="~/images/Fundacion/FDPATransparente.png" alt="loginFDPA" width="140" height="140">
+                <img class="mb-4" src="~/images/Fundacion/FDPATransparente.png" alt="loginFDPA" width="200" height="200">
                 <h1 class="h3 mb-3 font-weight-normal text-uppercase text-purple">Ingresar</h1>
                 <div class="form-group">
                     <div class="input-group-prepend">
@@ -29,7 +30,7 @@
                     </div>
                     <span asp-validation-for="Password" class="text-warning"></span>
                 </div>
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <div class="form-check">
                         <input asp-for="RememberMe" type="checkbox" class="form-check-input" />
@@ -44,32 +45,24 @@
                     <div class="row">
                         <div class="col-md-6 offset-md-3">
                             <!--                           <div class="input-group-prepend mb-2">
-                                   <span class="input-group-text" id="basic-addon4">
-                                       <img src="~/images/gmail.png" class="img-responsive"
-                                            width="40" height="40" />
-                                       <input type="submit" value="Iniciar sesión con Google" class="btn btn-link"
-                                              aria-describedby="basic-addon4" />
-                                   </span>
-                               </div> -->
+                        <span class="input-group-text" id="basic-addon4">
+                            <img src="~/images/gmail.png" class="img-responsive"
+                                 width="40" height="40" />
+                             <input type="submit" value="Iniciar sesión con Google" class="btn btn-link"
+                                    aria-describedby="basic-addon4" />
+                        </span>
+                        </div> -->
                             <!--<div class="input-group-prepend text-center">
-                               
-                            </div> -->
-                            <div class="input-group-prepend text-center">
-                                <span class="input-group-text" id="basic-addon5">
-                                    <fb:login-button scope="public_profile,email"
-                                                     onlogin="checkLoginState();"
-                                                     id="intoLogin">
-                                        Iniciar sesión con Facebook
-                                    </fb:login-button>
-                                </span>
-                            </div>
+
+                        </div> -->
+                            <!---->
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-</div>
+    </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
@@ -95,14 +88,12 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
-        var accessTokenResponse;
+        var accessToken;
         function checkLoginState() {
             FB.getLoginStatus(function (response) {
-                accessTokenResponse = response.authResponse.accessToken;   
-                window.location.href = '/Account/SignInFacebook/' + String(accessTokenResponse);
-            });           
+                accessToken = response.authResponse.accessToken;
+                window.location.href = '/Account/SignInFacebook/' + accessToken;
+            });
         }
-
-
     </script>
 }

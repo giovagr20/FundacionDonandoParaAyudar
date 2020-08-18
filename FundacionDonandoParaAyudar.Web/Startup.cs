@@ -80,11 +80,6 @@ namespace FundacionDonandoParaAyudar.Web
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
                     };
                 })
-                .AddGoogle(options =>
-                {
-                    options.ClientId = Configuration["AuthenticationGoogle:ClientId"];
-                    options.ClientSecret = Configuration["AuthenticationGoogle:ClientSecret"];
-                })
                 .AddFacebook(facebook=>
                 {
                     facebook.AppId = Configuration["AuthenticationFacebook:AppId"];

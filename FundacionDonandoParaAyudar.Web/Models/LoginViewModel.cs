@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Authentication;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FundacionDonandoParaAyudar.Web.Models
 {
@@ -13,5 +15,7 @@ namespace FundacionDonandoParaAyudar.Web.Models
         public string Password { get; set; }
 
         public bool RememberMe { get; set; }
+        public string ReturnUrl { get; set; }
+        public List<AuthenticationScheme> ExternalLogins { get; set; }
     }
 }

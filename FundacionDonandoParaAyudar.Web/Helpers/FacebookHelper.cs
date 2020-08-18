@@ -30,6 +30,7 @@ namespace FundacionDonandoParaAyudar.Web.Helpers
 
             var result = await _httpClientFactory.CreateClient()
                 .GetAsync(formattedUrl);
+
             result.EnsureSuccessStatusCode();
 
             var responseAsString = await result.Content.ReadAsStringAsync();

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using FundacionDonandoParaAyudar.Web.Data.Entities;
 using FundacionDonandoParaAyudar.Web.Helpers;
 using FundacionDonandoParaAyudar.Web.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -22,6 +25,8 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
         private readonly ICombosHelper _combosHelper;
         private readonly IMailHelper _mailHelper;
         private readonly IFacebookHelper _facebookHelper;
+        private readonly SignInManager<UserEntity> _signInManager;
+        private readonly UserManager<UserEntity> _userManager;
 
         public AccountController(
             IUserHelper userHelper,
@@ -29,7 +34,9 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             IImageHelper imageHelper,
             ICombosHelper combosHelper,
             IMailHelper mailHelper,
-            IFacebookHelper facebookHelper)
+            IFacebookHelper facebookHelper,
+            SignInManager<UserEntity> signInManager,
+            UserManager<UserEntity> userManager)
         {
             _userHelper = userHelper;
             _configuration = configuration;
@@ -37,6 +44,8 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             _combosHelper = combosHelper;
             _mailHelper = mailHelper;
             _facebookHelper = facebookHelper;
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
         public IActionResult Login()
         {
@@ -118,7 +127,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
                     token = myToken
                 }, protocol: HttpContext.Request.Scheme);
 
-                var response = _mailHelper.SendMail(model.Username, 
+                var response = _mailHelper.SendMail(model.Username,
                     "Confirmación de correo electrónico", $"<h1>Correo de confirmación</h1>" +
                     $"Para permitir al usuario, " +
                     $"Por favor presione click en este enlace:" +
@@ -355,53 +364,42 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             return View(model);
         }
 
-
-        public async Task<IActionResult> SignInFacebook(string accessToken)
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult _SignInFacebook(string provider, string returnUrl)
         {
-            FacebookUserInfoResult infoResult =await _facebookHelper.GetUserInfoAsync(accessToken);
+            var redirectUrl = Url.Action("ExternalLoginCallback", "Account",
+                new { ReturnUrl = returnUrl });
 
-            UserEntity user = await _userHelper.GetUserAsync(infoResult.Email);
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
 
-            if(user == null)
+            return new ChallengeResult(provider, properties);
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
+        {
+            returnUrl = returnUrl ?? Url.Content("~/");
+
+            LoginViewModel loginViewModel = new LoginViewModel
             {
-                AddUserViewModel userViewModel = new AddUserViewModel
-                {
-                    Document = accessToken,
-                    FirstName = infoResult.FirstName,
-                    LastName = infoResult.LastName,
-                    UserTypes = _combosHelper.GetComboRoles(),
-                    Password = "resultFacebook",
-                    PasswordConfirm = "resultFacebook"
-                };
+                ReturnUrl = returnUrl,
+                ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
+            };
 
-                string path = string.Empty;
-
-                UserEntity userEntity = await _userHelper.AddUserAsync(userViewModel, path);
-
-                if (userEntity == null)
-                {
-                    ModelState.AddModelError(string.Empty, "Este correo ya se encuentra registrado.");
-                    userViewModel.UserTypes = _combosHelper.GetComboRoles();
-                    return RedirectToAction("Login", "Account");
-                }
-
-                LoginViewModel loginViewModel = new LoginViewModel
-                {
-                    Password = userViewModel.Password,
-                    RememberMe = false,
-                    Username = userViewModel.Username
-                };
-
-                Microsoft.AspNetCore.Identity.SignInResult result2 = await _userHelper.LoginAsync(loginViewModel);
-
-                if (result2.Succeeded)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
+            if(remoteError != null)
+            {
+                ModelState.AddModelError(string.Empty, $"Error conexión externa");
+                return View("Login", loginViewModel);
             }
 
-            ViewBag.Message = "Error al ingresar";
-            return RedirectToAction("Register", "Account");
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if(info == null)
+            {
+                ModelState.AddModelError(string.Empty, "Error cargando información externa");
+                return View("Login", loginViewModel);
+            }
+            return View("Login", loginViewModel);
         }
     }
 }
