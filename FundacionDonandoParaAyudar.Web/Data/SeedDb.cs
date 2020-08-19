@@ -26,7 +26,7 @@ namespace FundacionDonandoParaAyudar.Web.Data
             var admin1 = await CheckUserAsync("1010",
                 "Giovanni",
                 "Gomez Restrepo",
-                "giovannyg32@gmail.com",
+                "giovanng.gomez@sqasa.co",
                 "300 634 2747",
                 "Calle 1 # 1-1",
                 UserType.Admin);

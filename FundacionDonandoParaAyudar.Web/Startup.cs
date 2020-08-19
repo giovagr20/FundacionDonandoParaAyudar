@@ -58,8 +58,7 @@ namespace FundacionDonandoParaAyudar.Web
                 cfg.Password.RequireNonAlphanumeric = false;
                 cfg.Password.RequireUppercase = false;
             }).AddDefaultTokenProviders()
-                .AddEntityFrameworkStores<DataContext>();
-
+              .AddEntityFrameworkStores<DataContext>();
             /*
              *                 options =>
                 {
@@ -84,8 +83,7 @@ namespace FundacionDonandoParaAyudar.Web
                 {
                     facebook.AppId = Configuration["AuthenticationFacebook:AppId"];
                     facebook.AppSecret = Configuration["AuthenticationFacebook:AppSecret"];
-                });                
-
+                });
 
             services.AddDbContext<DataContext>(cfg =>
             {

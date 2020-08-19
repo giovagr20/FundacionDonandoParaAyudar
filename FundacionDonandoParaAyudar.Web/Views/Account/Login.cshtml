@@ -11,6 +11,7 @@
                 <img class="mb-4" src="~/images/Fundacion/FDPATransparente.png" alt="loginFDPA" width="200" height="200">
                 <h1 class="h3 mb-3 font-weight-normal text-uppercase text-purple">Ingresar</h1>
                 <div class="form-group">
+                    <input type="hidden" asp-for="ReturnUrl" />
                     <div class="input-group-prepend">
                         <label asp-for="Username" class="sr-only">Usuario</label>
                         <span class="input-group-text" id="basic-addon1">@@</span>
@@ -61,8 +62,25 @@
                 </div>
             </form>
         </div>
+        <div class="col-md-4 offset-md-4">
+            <form asp-controller="Account" asp-action="ExternalLogin"
+                  asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                @foreach (var provider in Model.ExternalLogins)
+                {
+                <div class="form-group">
+                    <button name="provider"
+                            type="submit"
+                            class="btn btn-outline-primary btn-sm"
+                            value="@provider.Name">
+                        <img class="img-responsive" src="~/images/facebook.png" height="32" width="32" />
+                        Iniciar sesión con @provider.Name
+                    </button>
+                </div>
+                }
+            </form>
+        </div>
     </div>
-    </div>
+ </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

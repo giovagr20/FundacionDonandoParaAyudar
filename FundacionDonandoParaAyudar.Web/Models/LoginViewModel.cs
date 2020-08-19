@@ -16,6 +16,6 @@ namespace FundacionDonandoParaAyudar.Web.Models
 
         public bool RememberMe { get; set; }
         public string ReturnUrl { get; set; }
-        public List<AuthenticationScheme> ExternalLogins { get; set; }
+        public IEnumerable<AuthenticationScheme> ExternalLogins { get; set; }
     }
 }

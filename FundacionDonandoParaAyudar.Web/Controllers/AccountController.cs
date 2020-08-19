@@ -47,13 +47,18 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             _signInManager = signInManager;
             _userManager = userManager;
         }
-        public IActionResult Login()
+        public async Task<IActionResult> Login(string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+            var externalProviders = await _signInManager.GetExternalAuthenticationSchemesAsync();
+            return View(new LoginViewModel
+            {
+                ReturnUrl = returnUrl,
+                ExternalLogins = externalProviders
+            });
         }
 
         [HttpPost]
@@ -400,6 +405,40 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
                 return View("Login", loginViewModel);
             }
             return View("Login", loginViewModel);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> ExternalLogin(string provider, string returnUrl)
+        {
+            var redirectUri = Url.Action(nameof(ExternalLoginCallback), "Auth", new { returnUrl });
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUri);
+            return Challenge(properties, provider);
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl)
+        {
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            var result = await _signInManager
+                .ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
+
+            if (result.Succeeded)
+            {
+                return Redirect(returnUrl);
+            }
+
+            var username = info.Principal.FindFirst(ClaimTypes.Name.Replace(" ", "_")).Value;
+            return View("ExternalRegister", new ExternalRegisterViewModel
+            {
+                Username = username,
+                ReturnUrl = returnUrl
+            });
         }
     }
 }

@@ -7,8 +7,9 @@ namespace FundacionDonandoParaAyudar.Web.Data.Entities
 {
     public class UserEntity : IdentityUser
     {
+
         [Display(Name = "Documento")]
-        [MaxLength(20, ErrorMessage = "El {0} campo no puede tener más de {1} caracteres.")]
+        [MaxLength(50, ErrorMessage = "El {0} campo no puede tener más de {1} caracteres.")]
         [Required(ErrorMessage = "El campo {0} es mandatorio.")]
         public string Document { get; set; }
 

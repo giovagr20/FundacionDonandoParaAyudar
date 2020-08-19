@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using FundacionDonandoParaAyudar.Common.Enums;
 using FundacionDonandoParaAyudar.Web.Data.Entities;
 using FundacionDonandoParaAyudar.Web.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -25,8 +26,32 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             _signInManager = signInManager;
         }
 
-        public IActionResult _SignInFacebook()
+        public async Task<IActionResult> Login(string returnUrl)
         {
+            var externalProviders = await _signInManager.GetExternalAuthenticationSchemesAsync();
+            return View(new LoginViewModel
+            {
+                ReturnUrl = returnUrl,
+                ExternalLogins = externalProviders
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel vm)
+        {
+            // check if the model is valid
+
+            var result = await _signInManager.PasswordSignInAsync(vm.Username, vm.Password, false, false);
+
+            if (result.Succeeded)
+            {
+                return Redirect(vm.ReturnUrl);
+            }
+            else if (result.IsLockedOut)
+            {
+
+            }
+
             return View();
         }
 
@@ -34,7 +59,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
         [HttpPost]
         public IActionResult ExternalLogin(string provider, string returnUrl)
         {
-            var redirectUrl = Url.Action("ExternalLoginCallback", "Account",
+            var redirectUrl = Url.Action("ExternalLoginCallback", "Auth",
                                     new { ReturnUrl = returnUrl });
 
             var properties =
@@ -42,9 +67,9 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
 
             return new ChallengeResult(provider, properties);
         }
+
         [AllowAnonymous]
-        public async Task<IActionResult>
-            ExternalLoginCallback(string returnUrl = null, string remoteError = null)
+        public async Task<IActionResult>ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
 
@@ -56,26 +81,28 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
 
             if (remoteError != null)
             {
-                ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
+                ModelState.AddModelError(string.Empty, $"Error: {remoteError}");
 
                 return View("Login", loginViewModel);
             }
 
             var info = await _signInManager.GetExternalLoginInfoAsync();
+
             if (info == null)
             {
-                ModelState.AddModelError(string.Empty, "Error loading external login information.");
+                ModelState.AddModelError(string.Empty, "Error cargando información del inicia sesión.");
 
                 return View("Login", loginViewModel);
             }
 
             var signInResult = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider,
-                                        info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
+                                info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
 
             if (signInResult.Succeeded)
             {
                 return LocalRedirect(returnUrl);
             }
+
             else
             {
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
@@ -88,8 +115,12 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
                     {
                         user = new UserEntity
                         {
+                            Document = Guid.NewGuid().ToString(),
                             UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
-                            Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                            Email = info.Principal.FindFirstValue(ClaimTypes.Email),
+                            FirstName = info.Principal.FindFirstValue(ClaimTypes.Name),
+                            LastName = info.Principal.FindFirstValue(ClaimTypes.Name),
+                            UserType = UserType.User
                         };
 
                         await _userManager.CreateAsync(user);
@@ -109,3 +140,24 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
         }
     }
 }
+
+/*var info = await _signInManager.GetExternalLoginInfoAsync();
+if (info == null)
+{
+    return RedirectToAction("Login");
+}
+
+var result = await _signInManager
+    .ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
+
+if (result.Succeeded)
+{
+    return Redirect(returnUrl);
+}
+
+var username = info.Principal.FindFirst(ClaimTypes.Name.Replace(" ", "_")).Value;
+return View("ExternalRegister", new ExternalRegisterViewModel
+{
+    Username = username,
+    ReturnUrl = returnUrl
+});*/
