@@ -1,0 +1,22 @@
+﻿@model FundacionDonandoParaAyudar.Web.Models.LoginViewModel
+
+<div class="col-md-6">
+    <h1>External Login</h1>
+    <hr />
+    @{
+
+            <form method="post" asp-action="ExternalLogin" asp-controller="Auth" asp-route-returnUrl="@Model.ReturnUrl">
+                <div>
+                    @foreach (var provider in Model.ExternalLogins)
+                    {
+                        <button type="submit" class="btn btn-primary"
+                                name="provider" value="@provider.Name"
+                                title="Login usin your @provider.DisplayName account">
+                            @provider.DisplayName
+                        </button>
+                    }
+                </div>
+            </form>
+    }
+</div>
+

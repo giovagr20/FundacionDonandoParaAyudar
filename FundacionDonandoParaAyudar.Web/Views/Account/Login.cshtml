@@ -2,70 +2,116 @@
 
 @{
     ViewData["Title"] = "Login";
-}   
-    <div class="container" style="font-style:italic, oblique; font-family:Harabara;">
-        <div class="row text-center mt-5">
-            <div class="col-md-4 offset-md-4">
-                <form method="post">
-                    <img class="mb-4" src="~/images/Fundacion/FDPATransparente.png" alt="loginFDPA" width="140" height="140">
-                    <h1 class="h3 mb-3 font-weight-normal text-uppercase text-purple">Ingresar</h1>
-                    <div class="form-group">
-                        <div class="input-group-prepend">
-                            <label asp-for="Username" class="sr-only">Usuario</label>
-                            <span class="input-group-text" id="basic-addon1">@@</span>
-                            <input asp-for="Username" type="email" class="form-control" placeholder="Usuario"
-                                   aria-label="Username" aria-describedby="basic-addon1" required="" autofocus="">
-                        </div>
-                        <span asp-validation-for="Username" class="text-warning"></span>
-                    </div>
-                    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+}
 
-                    <div class="form-group">
-                        <div class="input-group-prepend">
-                            <label asp-for="Password" class="sr-only">Clave</label>
-                            <span class="input-group-text" id="basic-addon1">%</span>
-                            <input asp-for="Password" type="password"  class="form-control" placeholder="Clave"
-                                   aria-describedby="basic-addon1" required="">
-                        </div>
-                        <span asp-validation-for="Password" class="text-warning"></span>
+<div class="container mt-4" style="font-style:italic, oblique; font-family:Harabara;">
+    <div class="row text-center mt-5">
+        <div class="col-md-4 offset-md-4">
+            <form method="post">
+                <img class="mb-4" src="~/images/Fundacion/FDPATransparente.png" alt="loginFDPA" width="200" height="200">
+                <h1 class="h3 mb-3 font-weight-normal text-uppercase text-purple">Ingresar</h1>
+                <div class="form-group">
+                    <input type="hidden" asp-for="ReturnUrl" />
+                    <div class="input-group-prepend">
+                        <label asp-for="Username" class="sr-only">Usuario</label>
+                        <span class="input-group-text" id="basic-addon1">@@</span>
+                        <input asp-for="Username" type="email" class="form-control" placeholder="Usuario"
+                               aria-label="Username" aria-describedby="basic-addon1" required="" autofocus="">
                     </div>
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input asp-for="RememberMe" type="checkbox" class="form-check-input" />
-                            <label asp-for="RememberMe" class="form-check-label">Recuerdame</label>
-                        </div>
-                        <span asp-validation-for="RememberMe" class="text-warning"></span>
+                    <span asp-validation-for="Username" class="text-warning"></span>
+                </div>
+                <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+
+                <div class="form-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="Password" class="sr-only">Clave</label>
+                        <span class="input-group-text" id="basic-addon1">%</span>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Clave"
+                               aria-describedby="basic-addon1" required="">
                     </div>
-                    <div class="form-group">
-                        <input type="submit" value="Iniciar sesión" class="btn btn-success" />
-                        <a asp-action="Register" class="btn btn-primary">Registrarse</a>
-                        <a asp-action="RecoverPassword" class="btn btn-link">Olvidaste tu clave?</a>
-                        <div class="row">
-                            <div class="col-md-6 offset-md-2">
-                                <div class="input-group-prepend mb-2">
-                                    <span class="input-group-text" id="basic-addon4">
-                                        <img src="~/images/gmail.png" class="img-responsive"
-                                             width="40" height="40" />
-                                        <input type="submit" value="Iniciar sesión con Google" class="btn btn-link"
-                                               aria-describedby="basic-addon4" />
-                                    </span>
-                                </div>
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon5">
-                                        <img src="~/images/facebook.png" class="img-responsive"
-                                             width="40" height="40" />
-                                        <input type="submit" value="Iniciar sesión con Facebook" class="btn btn-link"
-                                               aria-describedby="basic-addon5" />
-                                    </span>
-                                </div>
-                                </div>
+                    <span asp-validation-for="Password" class="text-warning"></span>
+                </div>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input asp-for="RememberMe" type="checkbox" class="form-check-input" />
+                        <label asp-for="RememberMe" class="form-check-label">Recuerdame</label>
+                    </div>
+                    <span asp-validation-for="RememberMe" class="text-warning"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Iniciar sesión" class="btn btn-success" />
+                    <a asp-action="Register" class="btn btn-primary">Registrarse</a>
+                    <a asp-action="RecoverPassword" class="btn btn-link">Olvidaste tu clave?</a>
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                            <!--                           <div class="input-group-prepend mb-2">
+                        <span class="input-group-text" id="basic-addon4">
+                            <img src="~/images/gmail.png" class="img-responsive"
+                                 width="40" height="40" />
+                             <input type="submit" value="Iniciar sesión con Google" class="btn btn-link"
+                                    aria-describedby="basic-addon4" />
+                        </span>
+                        </div> -->
+                            <!--<div class="input-group-prepend text-center">
+
+                        </div> -->
+                            <!---->
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4 offset-md-4">
+            <form asp-controller="Account" asp-action="ExternalLogin"
+                  asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                @foreach (var provider in Model.ExternalLogins)
+                {
+                <div class="form-group">
+                    <button name="provider"
+                            type="submit"
+                            class="btn btn-outline-primary btn-sm"
+                            value="@provider.Name">
+                        <img class="img-responsive" src="~/images/facebook.png" height="32" width="32" />
+                        Iniciar sesión con @provider.Name
+                    </button>
+                </div>
+                }
+            </form>
         </div>
     </div>
-        @section Scripts {
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+ </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '597893234420728',
+                cookie: true,
+                xfbml: true,
+                version: 'v8.0'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        var accessToken;
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                accessToken = response.authResponse.accessToken;
+                window.location.href = '/Account/SignInFacebook/' + accessToken;
+            });
         }
+    </script>
+}

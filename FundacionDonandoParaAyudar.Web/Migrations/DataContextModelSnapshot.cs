@@ -80,10 +80,7 @@ namespace FundacionDonandoParaAyudar.Web.Migrations
 
                     b.Property<string>("Document")
                         .IsRequired()
-                        .HasMaxLength(20);
-
-                    b.Property<string>("DocumentType")
-                        .IsRequired();
+                        .HasMaxLength(50);
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);

@@ -1,0 +1,16 @@
+﻿@model FundacionDonandoParaAyudar.Web.Models.ExternalRegisterViewModel
+
+
+    <div class="jumbotron">
+        <form asp-controller="Auth" asp-action="ExternalRegister" method="post">
+            <input type="hidden" asp-for="ReturnUrl" />
+            <div>
+                <label>Username</label>
+                <input asp-for="Username" />
+                <span asp-validation-for="Username"></span>
+            </div>
+            <div>
+                <button type="submit">Sign Up</button>
+            </div>
+        </form>
+    </div>

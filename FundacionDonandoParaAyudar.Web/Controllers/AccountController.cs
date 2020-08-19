@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using FundacionDonandoParaAyudar.Web.Data.Entities;
 using FundacionDonandoParaAyudar.Web.Helpers;
 using FundacionDonandoParaAyudar.Web.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -21,27 +24,41 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
         private readonly IImageHelper _imageHelper;
         private readonly ICombosHelper _combosHelper;
         private readonly IMailHelper _mailHelper;
+        private readonly IFacebookHelper _facebookHelper;
+        private readonly SignInManager<UserEntity> _signInManager;
+        private readonly UserManager<UserEntity> _userManager;
 
         public AccountController(
             IUserHelper userHelper,
             IConfiguration configuration,
             IImageHelper imageHelper,
             ICombosHelper combosHelper,
-            IMailHelper mailHelper)
+            IMailHelper mailHelper,
+            IFacebookHelper facebookHelper,
+            SignInManager<UserEntity> signInManager,
+            UserManager<UserEntity> userManager)
         {
             _userHelper = userHelper;
             _configuration = configuration;
             _imageHelper = imageHelper;
             _combosHelper = combosHelper;
             _mailHelper = mailHelper;
+            _facebookHelper = facebookHelper;
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
-        public IActionResult Login()
+        public async Task<IActionResult> Login(string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+            var externalProviders = await _signInManager.GetExternalAuthenticationSchemesAsync();
+            return View(new LoginViewModel
+            {
+                ReturnUrl = returnUrl,
+                ExternalLogins = externalProviders
+            });
         }
 
         [HttpPost]
@@ -115,7 +132,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
                     token = myToken
                 }, protocol: HttpContext.Request.Scheme);
 
-                var response = _mailHelper.SendMail(model.Username, 
+                var response = _mailHelper.SendMail(model.Username,
                     "Confirmación de correo electrónico", $"<h1>Correo de confirmación</h1>" +
                     $"Para permitir al usuario, " +
                     $"Por favor presione click en este enlace:" +
@@ -352,5 +369,76 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult _SignInFacebook(string provider, string returnUrl)
+        {
+            var redirectUrl = Url.Action("ExternalLoginCallback", "Account",
+                new { ReturnUrl = returnUrl });
+
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+
+            return new ChallengeResult(provider, properties);
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
+        {
+            returnUrl = returnUrl ?? Url.Content("~/");
+
+            LoginViewModel loginViewModel = new LoginViewModel
+            {
+                ReturnUrl = returnUrl,
+                ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
+            };
+
+            if(remoteError != null)
+            {
+                ModelState.AddModelError(string.Empty, $"Error conexión externa");
+                return View("Login", loginViewModel);
+            }
+
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if(info == null)
+            {
+                ModelState.AddModelError(string.Empty, "Error cargando información externa");
+                return View("Login", loginViewModel);
+            }
+            return View("Login", loginViewModel);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> ExternalLogin(string provider, string returnUrl)
+        {
+            var redirectUri = Url.Action(nameof(ExternalLoginCallback), "Auth", new { returnUrl });
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUri);
+            return Challenge(properties, provider);
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl)
+        {
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            var result = await _signInManager
+                .ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
+
+            if (result.Succeeded)
+            {
+                return Redirect(returnUrl);
+            }
+
+            var username = info.Principal.FindFirst(ClaimTypes.Name.Replace(" ", "_")).Value;
+            return View("ExternalRegister", new ExternalRegisterViewModel
+            {
+                Username = username,
+                ReturnUrl = returnUrl
+            });
+        }
     }
 }

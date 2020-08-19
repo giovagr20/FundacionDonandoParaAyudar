@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using FundacionDonandoParaAyudar.Web.Data;
 using FundacionDonandoParaAyudar.Web.Data.Entities;
 using FundacionDonandoParaAyudar.Web.Helpers;
+using FundacionDonandoParaAyudar.Web.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -56,7 +58,15 @@ namespace FundacionDonandoParaAyudar.Web
                 cfg.Password.RequireNonAlphanumeric = false;
                 cfg.Password.RequireUppercase = false;
             }).AddDefaultTokenProviders()
-                .AddEntityFrameworkStores<DataContext>();
+              .AddEntityFrameworkStores<DataContext>();
+            /*
+             *                 options =>
+                {
+                    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                }
+             */
 
             services.AddAuthentication()
                 .AddCookie()
@@ -69,17 +79,11 @@ namespace FundacionDonandoParaAyudar.Web
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
                     };
                 })
-                .AddGoogle(options =>
-                {
-                    options.ClientId = Configuration["AuthenticationGoogle:ClientId"];
-                    options.ClientSecret = Configuration["AuthenticationGoogle:ClientSecret"];
-                })
                 .AddFacebook(facebook=>
                 {
                     facebook.AppId = Configuration["AuthenticationFacebook:AppId"];
                     facebook.AppSecret = Configuration["AuthenticationFacebook:AppSecret"];
-                });                
-
+                });
 
             services.AddDbContext<DataContext>(cfg =>
             {
@@ -87,11 +91,14 @@ namespace FundacionDonandoParaAyudar.Web
             });
 
             services.AddTransient<SeedDb>();
+            services.AddSingleton<FacebookAuthSettings>();
+            services.AddSingleton<IFacebookHelper, FacebookHelper>();
             services.AddScoped<IUserHelper, UserHelper>();
             services.AddScoped<IMailHelper, MailHelper>();
             services.AddScoped<ICombosHelper, CombosHelper>();
             services.AddScoped<IImageHelper, ImageHelper>();
             services.AddScoped<ISelectedHelper, SelectedHelper>();
+            services.AddHttpClient();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

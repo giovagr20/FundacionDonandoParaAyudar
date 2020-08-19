@@ -74,11 +74,13 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var response = _mailHelper.SendMail("giovagr20@yopmail.com",
-                    $"{model.FirstName + " " + model.LastName} te ha enviado un mensaje desde la pagina web", 
-                    $"<h1> Te han escrito el siguiente mensaje: </h1>" +
+                var response = _mailHelper.SendMail("donandoparaayudar@gmail.com",
+                    $"{model.FirstName + " " + model.LastName} te ha enviado un mensaje!", 
+                    $"<h1> En fundación donando para ayudar en contáctenos </h1> " +
+                    $"<h4>Te han escrito el siguiente mensaje: </h4>" +
                     $"<br/>" +
-                    $"<p>{model.Message}</p>");
+                    $"<p>{model.Message}</p>" +
+                    $"<br/> del Correo: {model.Email}");
 
                 if (response.IsSuccess)
                 {
@@ -87,10 +89,7 @@ namespace FundacionDonandoParaAyudar.Web.Controllers
                     await _context.SaveChangesAsync();
                     UserEntity user = await _userHelper.GetUserAsync(model.Email);
                     if (user == null)
-                    {
-                        _dataModel = new ReceiveDataModel(model.Email, model.FirstName, model.LastName);
-                        
-                        ViewBag.Message = "Si quieres conocer más acerca de la fundación, te invitamos a registrarte";
+                    {                        
                         return RedirectToAction("Register", "Account");
                     }
                     return RedirectToAction(nameof(Contact));

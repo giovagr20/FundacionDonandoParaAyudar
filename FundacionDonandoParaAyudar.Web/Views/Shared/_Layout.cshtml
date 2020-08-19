@@ -27,87 +27,85 @@
         </environment>
     </head>
     <body>
-        <div class="fixed-top bg-color">
-            <div class="container bg-color">
-                <div class="collapse bg-color" id="navbarToggleExternalContent">
-                    <div class="bg-color p-4">
-                        <img src="~/images/Fundacion/FDPATransparente.png" alt="Logo"
-                             width="70" height="70" />
-                        <h3 class="text-uppercase text-light style-text-data">&hearts; - Nuestro Menu - &hearts; </h3>
+
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarTogglerDemo03"
+                    aria-controls="navbarTogglerDemo03"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand ml-4" asp-action="Index" asp-controller="Home">
+                <span class="navbar-text style-text-data">
+                    F <i class="fas fa-heartbeat"></i>
+                    D <i class="fas fa-heartbeat"></i>
+                    P <i class="fas fa-heartbeat"></i>
+                    A
+                </span>
+                <img src="~/images/Fundacion/LOGO FINAL FDPA fondo negro.png" alt="Logo"
+                     width="70" height="70" />
+            </a>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-lg-0">
+                    <li class="nav-item">
                         <a asp-area="" asp-controller="Home" asp-action="Index"
-                           class="nav-link text-uppercase text-light">
-                        </a>
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Home" asp-action="Index"
-                                   class="nav-link text-uppercase text-light style-text-data"><i class="fas fa-home"></i> Inicio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Home" asp-action="About"
-                                   class="nav-link text-uppercase text-light style-text-data"> <i class="fas fa-question-circle"></i> Quienes somos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Home" asp-action="Contact"
-                                   class="nav-link text-uppercase text-light style-text-data"> <i class="fas fa-phone"></i> Contactanos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Foundation" asp-action="Index"
-                                   class="nav-link text-uppercase text-light style-text-data"><i class="fab fa-ussunnah"></i> Nuestra fundacion</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="bg-color p-4">
-                        <ul class="nav navbar-nav">
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <li class="nav-item">
-                                    <a asp-area="" asp-controller="Account" asp-action="ChangeUser"
-                                       class="nav-link text-uppercase text-light style-text-data">
-                                        <i class="fas fa-user-tag"></i>
-                                        <small class="style-text-data">Edita tu perfil</small><br />
-                                        @User.Identity.Name
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-area="" asp-controller="Account" asp-action="Logout"
-                                       class="nav-link text-uppercase text-light style-text-data">
-                                        <i class="fas fa-power-off"></i> Salir
-                                    </a>
-                                </li>
-                            }
-                            else
-                            {
-                                <li class="nav-item">
-                                    <a asp-area="" asp-controller="Account" asp-action="Login"
-                                       class="nav-link text-uppercase text-light style-text-data">
-                                        <i class="fas fa-user"></i> Iniciar sesión
-                                    </a>
-                                </li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-                <nav class="navbar navbar-dark bg-color">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarToggleExternalContent"
-                            aria-controls="navbarToggleExternalContent"
-                            aria-expanded="false"
-                            aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon" />
-                    </button>
-                    <a asp-area="" asp-controller="Home" asp-action="Index">
-                        <span class="navbar-text style-text-data">
-                            F <i class="fas fa-heartbeat"></i>
-                            D <i class="fas fa-heartbeat"></i>
-                            P <i class="fas fa-heartbeat"></i>
-                            A
-                        </span>
-                        <img src="~/images/Fundacion/FDPATransparente.png" alt="Logo_FDPA"
-                             style="width: 60px; height:60px; max-width:inherit;" />
-                    </a>
-                </nav>
+                           class="nav-link text-uppercase text-light style-text-data"><i class="fas fa-home"></i> Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Home" asp-action="About"
+                           class="nav-link text-uppercase text-light style-text-data"> <i class="fas fa-question-circle"></i> Quienes somos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Home" asp-action="Contact"
+                           class="nav-link text-uppercase text-light style-text-data"> <i class="fas fa-phone"></i> Contactanos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Foundation" asp-action="Index"
+                           class="nav-link text-uppercase text-light style-text-data"><i class="fab fa-ussunnah"></i> Nuestra fundacion</a>
+                    </li>
+                </ul>
             </div>
-        </div>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav my-2 my-lg-0 mr-auto">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Account" asp-action="ChangeUser"
+                               class="nav-link text-uppercase text-light style-text-data">
+                                <i class="fas fa-user-tag"></i>
+                                <small class="style-text-data">Edita tu perfil</small><br />
+                                @User.Identity.Name
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Account" asp-action="Logout"
+                               class="nav-link text-uppercase text-light style-text-data">
+                                <i class="fas fa-power-off"></i> Salir
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Account" asp-action="Login"
+                               class="nav-link text-uppercase text-light style-text-data">
+                                <i class="fas fa-user"></i> Iniciar sesión
+                            </a>
+                        </li>
+                        <!--<li class="nav-item">
+            <a asp-area="" asp-controller="Auth" asp-action="_SignInFacebook"
+               class="nav-link text-uppercase text-light style-text-data">
+                <i class="fas fa-user"></i> Iniciar sesión con Facebook
+            </a>
+        </li>-->
+                    }
+                </ul>
+            </div>
+        </nav>
 
         <ul class="nav flex-column active the-fly">
             <li class="nav-item">
