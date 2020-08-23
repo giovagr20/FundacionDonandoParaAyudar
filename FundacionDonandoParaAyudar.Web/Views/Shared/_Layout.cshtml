@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Donando Para Ayudar</title>
 
-        <environment include="Production">
+        <environment include="Development">
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
                   integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
                   crossorigin="anonymous">
@@ -15,7 +15,7 @@
                   integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
                   crossorigin="anonymous">
         </environment>
-        <environment exclude="Production">
+        <environment exclude="Development">
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
                   integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
                   crossorigin="anonymous">
@@ -67,6 +67,7 @@
                         <a asp-area="" asp-controller="Foundation" asp-action="Index"
                            class="nav-link text-uppercase text-light style-text-data"><i class="fab fa-ussunnah"></i> Nuestra fundacion</a>
                     </li>
+                    
                 </ul>
             </div>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
@@ -292,7 +293,7 @@
                 </div>
             </div>
         </div>
-        <environment include="Production">
+        <environment include="Development">
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
                     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
                     crossorigin="anonymous"></script>
@@ -308,7 +309,7 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         </environment>
 
-        <environment exclude="Production">
+        <environment exclude="Development">
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
                     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
                     crossorigin="anonymous"></script>
